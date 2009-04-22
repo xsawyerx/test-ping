@@ -5,8 +5,16 @@ use strict;
 
 my  $CLASS    = __PACKAGE__;
 my  $HASHPATH = '_net-ping';
-our $PROTO    = q{};
 our @EXPORT   = qw( ping_ok );
+
+# Net::Ping variables
+our $PROTO             = q{};
+our $PORT              = q{};
+our $BIND              = q{};
+our $TIMEOUT           = q{};
+our $SOURCE_VERIFY     = q{};
+our $SERVICE_CHECK     = q{};
+our $TCP_SERVICE_CHECK = q{};
 
 BEGIN {
     use base 'Test::Builder::Module';
@@ -58,7 +66,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =head1 SYNOPSIS
 
