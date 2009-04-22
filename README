@@ -1,0 +1,71 @@
+NAME
+    Test::Ping - Testing pings using Net::Ping
+
+VERSION
+    Version 0.02
+
+SYNOPSIS
+    This module helps test pings using Net::Ping
+
+        use Test::More tests => 1;
+        use Test::Ping;
+
+        ping_ok( $host, "able to ping $host" );
+        ...
+
+EXPORT
+    ping_ok
+
+FUNCTIONS
+  ping_ok
+    Checks if a host replies to ping correctly. Uses Net::Ping.
+
+INTERNAL FUNCTIONS
+  _update_variables($tb)
+    Updates the internal variables, used by Net::Ping.
+
+    Gets the test builder object, returns nothing.
+
+  _has_var_ok( 'PROT', 'icmp', 'has correct protocol' )
+    Gets a variable name to test, what to test against and the name of the
+    test. Runs an actual test using Test::Builder.
+
+    This is used to debug the actual module, if you wanna make sure it
+    works.
+
+AUTHOR
+    Sawyer X, "<xsawyerx at cpan.org>"
+
+BUGS
+    Please report any bugs or feature requests to "bug-test-ping at
+    rt.cpan.org", or through the web interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping>. I will be
+    notified, and then you'll automatically be notified of progress on your
+    bug as I make changes.
+
+SUPPORT
+    You can find documentation for this module with the perldoc command.
+
+        perldoc Test::Ping
+
+    You can also look for information at:
+
+    * RT: CPAN's request tracker
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Ping>
+
+    * AnnoCPAN: Annotated CPAN documentation
+        <http://annocpan.org/dist/Test-Ping>
+
+    * CPAN Ratings
+        <http://cpanratings.perl.org/d/Test-Ping>
+
+    * Search CPAN
+        <http://search.cpan.org/dist/Test-Ping/>
+
+ACKNOWLEDGEMENTS
+COPYRIGHT & LICENSE
+    Copyright 2009 Sawyer X, all rights reserved.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
+

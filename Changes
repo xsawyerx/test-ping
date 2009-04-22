@@ -1,0 +1,8 @@
+Revision history for Test-Ping
+
+0.02    22.04.09
+        ping_ok() now works
+
+0.01    22.04.09
+        Basic skeleton
+
