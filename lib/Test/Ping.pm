@@ -6,6 +6,7 @@ use strict;
 my  $CLASS    = __PACKAGE__;
 my  $HASHPATH = '_net-ping';
 our @EXPORT   = qw( ping_ok );
+our $VERSION  = '0.04';
 
 # Net::Ping variables
 our $PROTO             = q{};
@@ -24,8 +25,6 @@ BEGIN {
                ->{'_net-ping'}
                ->{'object'} = Net::Ping->new();
 }
-
-use Data::Dumper;
 
 sub _update_variables {
     my $tb = shift;
@@ -66,7 +65,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =head1 SYNOPSIS
 
@@ -78,15 +77,15 @@ This module helps test pings using Net::Ping
     ping_ok( $host, "able to ping $host" );
     ...
 
+=head1 FUNCTIONS
+
+=head2 ping_ok( $host, $test )
+
+Checks if a host replies to ping correctly. Uses Net::Ping.
+
 =head1 EXPORT
 
 ping_ok
-
-=head1 FUNCTIONS
-
-=head2 ping_ok
-
-Checks if a host replies to ping correctly. Uses Net::Ping.
 
 =head1 INTERNAL FUNCTIONS
 
