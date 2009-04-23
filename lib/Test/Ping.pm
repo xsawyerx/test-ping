@@ -5,6 +5,7 @@ use strict;
 
 my  $CLASS    = __PACKAGE__;
 my  $HASHPATH = '_net-ping';
+my  $OBJPATH  = __PACKAGE__->builder->{'_net-ping_object'};
 our @EXPORT   = qw( ping_ok );
 our $VERSION  = '0.04';
 
@@ -23,26 +24,60 @@ BEGIN {
     use Net::Ping;
 
     __PACKAGE__->builder
-               ->{'_net-ping'}
-               ->{'object'} = Net::Ping->new();
+               ->{'_net-ping_object'} = Net::Ping->new();
 }
 
 sub _update_variables {
-    my $tb = shift;
+    my $tb    = shift;
+    my $EMPTY = q{};
 
-    $tb->{$HASHPATH}{'PROTO'            } = $PROTO;
-    $tb->{$HASHPATH}{'PORT'             } = $PORT;
-#    $tb->{$HASHPATH}{'BIND'             } = $BIND; # currently disabled
-    $tb->{$HASHPATH}{'TIMEOUT'          } = $TIMEOUT;
-    $tb->{$HASHPATH}{'SOURCE_VERIFY'    } = $SOURCE_VERIFY;
-    $tb->{$HASHPATH}{'SERVICE_CHECK'    } = $SERVICE_CHECK;
-    $tb->{$HASHPATH}{'TCP_SERVICE_CHECK'} = $TCP_SERVICE_CHECK;
+    my %methods = (
+# BIND currently disabled
+#        BIND              => { value => $BIND,    method => 'bind'    },
+        PORT              => { value => $PORT,    method => 'port'    },
+        TIMEOUT           => { value => $TIMEOUT, method => 'timeout' },
+
+        SOURCE_VERIFY     => {
+            value  => $SOURCE_VERIFY,
+            method => 'source_verify',
+        },
+
+        SERVICE_CHECK     => {
+            value  => $SERVICE_CHECK,
+            method => 'service_check',
+        },
+
+        TCP_SERVICE_CHECK => {
+            value  => $TCP_SERVICE_CHECK,
+            method => 'tcp_service_check',
+        },
+
+    );
+
+    foreach my $var ( keys %methods ) {
+        # check if var has changed
+        my $old_var = $tb->{$HASHPATH}->{$var} || $EMPTY;
+        my $new_var = $methods{$var}->{'value'} || $EMPTY;
+
+        if ( $new_var ne $old_var ) {
+            print STDERR "PREVIOUS: $old_var, NEW: $new_var\n";
+            # var has changed
+            my $run_method = $methods{$var}->{'method'};
+
+            # update the object
+            $OBJPATH->$run_method($new_var);
+
+            # update the variables hash
+            $tb->{$HASHPATH}->{$var} = $new_var;
+        }
+    }
+
 }
 
 sub ping_ok {
     my ( $host, $name ) = @_;
     my $tb = $CLASS->builder;
-    my $pinger = $tb->{$HASHPATH}->{'object'};
+    my $pinger = $OBJPATH;
     _update_variables($tb);
 
     my $alive = $pinger->ping($host);
@@ -56,12 +91,7 @@ sub _has_var_ok {
     $tb->is_eq( $tb->{$HASHPATH}->{$var_name}, $var_value, $name );
 }
 
-END {
-    __PACKAGE__->builder
-               ->{$HASHPATH}
-               ->{'object'}
-               ->close();
-}
+END { $OBJPATH->close(); }
 
 1;
 
