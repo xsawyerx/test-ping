@@ -11,7 +11,7 @@ use Test::Ping;
 my %vars = (
     PROTO             => 'icmp',
     PORT              => 9000,
-    BIND              => 1,
+#    BIND              => 1,  # currently disabled
     TIMEOUT           => 30,
     SOURCE_VERIFY     => 1,
     SERVICE_CHECK     => 1,
