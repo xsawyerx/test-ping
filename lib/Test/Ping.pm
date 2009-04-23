@@ -3,11 +3,12 @@ package Test::Ping;
 use warnings;
 use strict;
 
-my  $CLASS    = __PACKAGE__;
-my  $HASHPATH = '_net-ping';
-my  $OBJPATH  = __PACKAGE__->builder->{'_net-ping_object'};
-our @EXPORT   = qw( ping_ok );
-our $VERSION  = '0.04';
+my  $CLASS         = __PACKAGE__;
+my  $HASHPATH      = '_net-ping';
+my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
+my  $method_ignore = '__NONE';
+our @EXPORT        = qw( ping_ok );
+our $VERSION       = '0.04';
 
 # Net::Ping variables
 # took the defaults, just in case
@@ -24,7 +25,7 @@ BEGIN {
     use Net::Ping;
 
     __PACKAGE__->builder
-               ->{'_net-ping_object'} = Net::Ping->new();
+               ->{'_net-ping_object'} = Net::Ping->new($PROTO);
 }
 
 sub _update_variables {
@@ -33,9 +34,10 @@ sub _update_variables {
 
     my %methods = (
 # BIND currently disabled
-#        BIND              => { value => $BIND,    method => 'bind'    },
-        PORT              => { value => $PORT,    method => 'port'    },
-        TIMEOUT           => { value => $TIMEOUT, method => 'timeout' },
+#        BIND     => { value => $BIND,    method => 'bind'    },
+        PROTO     => { value => $PROTO,   method => $method_ignore },
+        PORT      => { value => $PORT,    method => 'port_number'  },
+        TIMEOUT   => { value => $TIMEOUT, method => $method_ignore },
 
         SOURCE_VERIFY     => {
             value  => $SOURCE_VERIFY,
@@ -60,12 +62,15 @@ sub _update_variables {
         my $new_var = $methods{$var}->{'value'} || $EMPTY;
 
         if ( $new_var ne $old_var ) {
+            print STDERR "testing $var\n";
             print STDERR "PREVIOUS: $old_var, NEW: $new_var\n";
             # var has changed
             my $run_method = $methods{$var}->{'method'};
 
             # update the object
-            $OBJPATH->$run_method($new_var);
+            if ( $run_method ne $method_ignore ) {
+                $OBJPATH->$run_method($new_var);
+            }
 
             # update the variables hash
             $tb->{$HASHPATH}->{$var} = $new_var;
@@ -80,7 +85,7 @@ sub ping_ok {
     my $pinger = $OBJPATH;
     _update_variables($tb);
 
-    my $alive = $pinger->ping($host);
+    my $alive = $pinger->ping( $host, $TIMEOUT );
     $tb->ok( $alive, $name );
 }
 
