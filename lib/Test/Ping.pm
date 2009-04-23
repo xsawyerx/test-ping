@@ -9,13 +9,14 @@ our @EXPORT   = qw( ping_ok );
 our $VERSION  = '0.04';
 
 # Net::Ping variables
-our $PROTO             = q{};
-our $PORT              = q{};
-our $BIND              = q{};
-our $TIMEOUT           = q{};
-our $SOURCE_VERIFY     = q{};
-our $SERVICE_CHECK     = q{};
-our $TCP_SERVICE_CHECK = q{};
+# took the defaults, just in case
+our $PROTO             = 'tcp';
+our $PORT              = 7;     # echo port, default
+#our $BIND              = q{};   # won't be used for now
+our $TIMEOUT           = 5;
+our $SOURCE_VERIFY     = 1;
+our $SERVICE_CHECK     = 0;
+our $TCP_SERVICE_CHECK = 0;     # deprecated, but still, why not
 
 BEGIN {
     use base 'Test::Builder::Module';
@@ -28,7 +29,14 @@ BEGIN {
 
 sub _update_variables {
     my $tb = shift;
-    $tb->{$HASHPATH}{'PROTO'} = $PROTO;
+
+    $tb->{$HASHPATH}{'PROTO'            } = $PROTO;
+    $tb->{$HASHPATH}{'PORT'             } = $PORT;
+#    $tb->{$HASHPATH}{'BIND'             } = $BIND; # currently disabled
+    $tb->{$HASHPATH}{'TIMEOUT'          } = $TIMEOUT;
+    $tb->{$HASHPATH}{'SOURCE_VERIFY'    } = $SOURCE_VERIFY;
+    $tb->{$HASHPATH}{'SERVICE_CHECK'    } = $SERVICE_CHECK;
+    $tb->{$HASHPATH}{'TCP_SERVICE_CHECK'} = $TCP_SERVICE_CHECK;
 }
 
 sub ping_ok {

@@ -9,7 +9,13 @@ use Test::More tests => 1;
 use Test::Ping;
 
 my %vars = (
-    PROTO => 'icmp',
+    PROTO             => 'icmp',
+    PORT              => 9000,
+    BIND              => 1,
+    TIMEOUT           => 30,
+    SOURCE_VERIFY     => 1,
+    SERVICE_CHECK     => 1,
+    TCP_SERVICE_CHECK => 1,
 );
 
 no strict 'refs';
