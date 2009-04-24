@@ -13,7 +13,7 @@ my $builder = Module::Build->new(
     requires => {
         'Net::Ping'     => 2.35,
         'Test::Builder' => 0.86,
-    }
+    },
     add_to_cleanup      => [ 'Test-Ping-*' ],
     create_makefile_pl => 'traditional',
 );
