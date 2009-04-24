@@ -122,7 +122,7 @@ This module helps test pings using Net::Ping
     ping_ok( $host, "able to ping $host" );
     ...
 
-=head1 FUNCTIONS
+=head1 SUBROUTINES/METHODS
 
 =head2 ping_ok( $host, $test )
 
