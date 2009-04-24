@@ -74,6 +74,7 @@ sub _update_variables {
         }
     }
 
+    return 1;
 }
 
 sub ping_ok {
@@ -84,6 +85,8 @@ sub ping_ok {
 
     my $alive = $pinger->ping( $host, $TIMEOUT );
     $tb->ok( $alive, $name );
+
+    return 1;
 }
 
 sub _has_var_ok {
@@ -91,6 +94,8 @@ sub _has_var_ok {
     my $tb = $CLASS->builder;
     _update_variables($tb);
     $tb->is_eq( $tb->{$HASHPATH}->{$var_name}, $var_value, $name );
+
+    return 1;
 }
 
 END { $OBJPATH->close(); }
