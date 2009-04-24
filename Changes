@@ -1,5 +1,10 @@
 Revision history for Test-Ping
 
+0.04    24.04.09
+        added test for possible bug in Net::Ping
+        got it stable
+        removed BIND and PORT support for now
+        
 0.03    22.04.09
         separated variable tests to a different file
         added TIMEOUT, PORT, BIND, SOURCE_VERIFY, SERVICE_CHECK, TCP_SERVICE_CHECK
