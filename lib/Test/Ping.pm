@@ -98,6 +98,8 @@ sub _has_var_ok {
     return 1;
 }
 
+sub _get_object { return $OBJPATH; }
+
 END { $OBJPATH->close(); }
 
 1;
@@ -158,7 +160,7 @@ There is a possible bug in Net::Ping, in which if you change the port, the subse
 
 =head2 BIND
 
-=head1 INTERNAL FUNCTIONS
+=head1 INTERNAL METHODS
 
 =head2 _update_variables($tb)
 
@@ -177,6 +179,12 @@ This is used to debug the actual module, if you wanna make sure it works.
 
     $Test::Ping::PROT = 'icmp';
     _has_var_ok( 'PROT', 'icmp', 'has correct protocol' )
+
+=head2 _get_object
+
+When debugging behavior, fetching an internal object from a producedural module can be a bit difficult (especially when it has base inheritence with another one).
+
+This method allows you (or me) to fetch the actual Net::Ping object from Test::Ping. It eases testing and assurance.
 
 =head1 AUTHOR
 
