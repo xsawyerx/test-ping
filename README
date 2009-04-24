@@ -2,7 +2,7 @@ NAME
     Test::Ping - Testing pings using Net::Ping
 
 VERSION
-    Version 0.02
+    Version 0.04
 
 SYNOPSIS
     This module helps test pings using Net::Ping
@@ -13,25 +13,55 @@ SYNOPSIS
         ping_ok( $host, "able to ping $host" );
         ...
 
+FUNCTIONS
+  ping_ok( $host, $test )
+    Checks if a host replies to ping correctly.
+
 EXPORT
     ping_ok
 
-FUNCTIONS
-  ping_ok
-    Checks if a host replies to ping correctly. Uses Net::Ping.
+SUPPORTED VARIABLES
+    Currently some variables are suppose to be implemented but there are
+    still no test cases, and until there are test cases (which is exactly
+    what I'm working on right now), nothing should be assumed as supported.
+    Either wait, write a test or try it out.
 
+INTEND-TO-SUPPORT VARIABLES
+    These are variables I intend to support, so stay tuned or just send a
+    patch.
+
+  PROTO
+  TIMEOUT
+  SOURCE_VERIFY
+  SERVICE_CHECK
+  TCP_SERVICE_CHECK
+DISABLED TILL FURTHER NOTICE VARIABLES
+  PORT
+    There is a possible bug in Net::Ping, in which if you change the port,
+    the subsequent test results return bad. I sent a bug report with a test
+    case to Net::Ping. Hopefully they will reply soon (either with a patch,
+    a fix, or a reason why this isn't really a bug) and as soon as that
+    happens, I'll update Test::Ping and the POD.
+
+  BIND
 INTERNAL FUNCTIONS
   _update_variables($tb)
     Updates the internal variables, used by Net::Ping.
 
     Gets the test builder object, returns nothing.
 
-  _has_var_ok( 'PROT', 'icmp', 'has correct protocol' )
+  _has_var_ok( $var_name, $var_value, $description )
     Gets a variable name to test, what to test against and the name of the
     test. Runs an actual test using Test::Builder.
 
     This is used to debug the actual module, if you wanna make sure it
     works.
+
+        use Test::More tests => 1;
+        use Test::Ping;
+
+        $Test::Ping::PROT = 'icmp';
+        _has_var_ok( 'PROT', 'icmp', 'has correct protocol' )
 
 AUTHOR
     Sawyer X, "<xsawyerx at cpan.org>"
@@ -39,30 +69,47 @@ AUTHOR
 BUGS
     Please report any bugs or feature requests to "bug-test-ping at
     rt.cpan.org", or through the web interface at
-    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping>. I will be
-    notified, and then you'll automatically be notified of progress on your
-    bug as I make changes.
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping>.
+
+    There is also a GitHub issue tracker at
+    <http://github.com/xsawyerx/test-ping/issues> which I'll probably check
+    just as much.
 
 SUPPORT
     You can find documentation for this module with the perldoc command.
 
         perldoc Test::Ping
 
+    If you have Git, this is the clone path:
+
+    git@github.com:xsawyerx/test-ping.git
+
     You can also look for information at:
 
-    * RT: CPAN's request tracker
+    *   GitHub Website:
+
+        <http://github.com/xsawyerx/test-ping/tree/master>
+
+    *   RT: CPAN's request tracker
+
         <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Ping>
 
-    * AnnoCPAN: Annotated CPAN documentation
+    *   AnnoCPAN: Annotated CPAN documentation
+
         <http://annocpan.org/dist/Test-Ping>
 
-    * CPAN Ratings
+    *   CPAN Ratings
+
         <http://cpanratings.perl.org/d/Test-Ping>
 
-    * Search CPAN
+    *   Search CPAN
+
         <http://search.cpan.org/dist/Test-Ping/>
 
 ACKNOWLEDGEMENTS
+    Thanks to everyone who works and contributed to Net::Ping. This module
+    depends solely on it.
+
 COPYRIGHT & LICENSE
     Copyright 2009 Sawyer X, all rights reserved.
 

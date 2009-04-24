@@ -1,8 +1,13 @@
+.cvsignore
 Build.PL
 Changes
+lib/Test/Ping.pm
 MANIFEST
 README
-lib/Test/Ping.pm
 t/00-load.t
+t/01-simple.t
+t/02-variables.t
+t/boilerplate.t
 t/pod-coverage.t
 t/pod.t
+t/pos_bug_net_ping.t

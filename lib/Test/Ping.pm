@@ -33,10 +33,9 @@ sub _update_variables {
     my $EMPTY = q{};
 
     my %methods = (
-# BIND currently disabled
-#        BIND     => { value => $BIND,    method => 'bind'    },
-        PROTO     => { value => $PROTO,   method => $method_ignore },
+#        BIND      => { value => $BIND,    method => 'bind'         },
 #        PORT      => { value => $PORT,    method => 'port_number'  },
+        PROTO     => { value => $PROTO,   method => $method_ignore },
         TIMEOUT   => { value => $TIMEOUT, method => $method_ignore },
 
         SOURCE_VERIFY     => {
@@ -122,11 +121,37 @@ This module helps test pings using Net::Ping
 
 =head2 ping_ok( $host, $test )
 
-Checks if a host replies to ping correctly. Uses Net::Ping.
+Checks if a host replies to ping correctly.
 
 =head1 EXPORT
 
 ping_ok
+
+=head1 SUPPORTED VARIABLES
+
+Currently some variables are suppose to be implemented but there are still no test cases, and until there are test cases (which is exactly what I'm working on right now), nothing should be assumed as supported. Either wait, write a test or try it out.
+
+=head1 INTEND-TO-SUPPORT VARIABLES
+
+These are variables I intend to support, so stay tuned or just send a patch.
+
+=head2 PROTO
+
+=head2 TIMEOUT
+
+=head2 SOURCE_VERIFY
+
+=head2 SERVICE_CHECK
+
+=head2 TCP_SERVICE_CHECK
+
+=head1 DISABLED TILL FURTHER NOTICE VARIABLES
+
+=head2 PORT
+
+There is a possible bug in Net::Ping, in which if you change the port, the subsequent test results return bad. I sent a bug report with a test case to Net::Ping. Hopefully they will reply soon (either with a patch, a fix, or a reason why this isn't really a bug) and as soon as that happens, I'll update Test::Ping and the POD.
+
+=head2 BIND
 
 =head1 INTERNAL FUNCTIONS
 
@@ -136,11 +161,17 @@ Updates the internal variables, used by Net::Ping.
 
 Gets the test builder object, returns nothing.
 
-=head2 _has_var_ok( 'PROT', 'icmp', 'has correct protocol' )
+=head2 _has_var_ok( $var_name, $var_value, $description )
 
 Gets a variable name to test, what to test against and the name of the test. Runs an actual test using Test::Builder.
 
 This is used to debug the actual module, if you wanna make sure it works.
+
+    use Test::More tests => 1;
+    use Test::Ping;
+
+    $Test::Ping::PROT = 'icmp';
+    _has_var_ok( 'PROT', 'icmp', 'has correct protocol' )
 
 =head1 AUTHOR
 
@@ -149,8 +180,9 @@ Sawyer X, C<< <xsawyerx at cpan.org> >>
 =head1 BUGS
 
 Please report any bugs or feature requests to C<bug-test-ping at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping>.  I will be notified, and then you'll
-automatically be notified of progress on your bug as I make changes.
+the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping>.
+
+There is also a GitHub issue tracker at L<http://github.com/xsawyerx/test-ping/issues> which I'll probably check just as much.
 
 =head1 SUPPORT
 
@@ -158,10 +190,17 @@ You can find documentation for this module with the perldoc command.
 
     perldoc Test::Ping
 
+If you have Git, this is the clone path:
+
+git@github.com:xsawyerx/test-ping.git
 
 You can also look for information at:
 
 =over 4
+
+=item * GitHub Website:
+
+L<http://github.com/xsawyerx/test-ping/tree/master>
 
 =item * RT: CPAN's request tracker
 
@@ -184,6 +223,7 @@ L<http://search.cpan.org/dist/Test-Ping/>
 
 =head1 ACKNOWLEDGEMENTS
 
+Thanks to everyone who works and contributed to Net::Ping. This module depends solely on it.
 
 =head1 COPYRIGHT & LICENSE
 
