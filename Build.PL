@@ -11,7 +11,7 @@ my $builder = Module::Build->new(
         'Test::More' => 0,
     },
     requires => {
-        'Net::Ping'     => 2.35,
+        'Net::Ping'     => 2.33,
         'Test::Builder' => 0.86,
     },
     add_to_cleanup      => [ 'Test-Ping-*' ],
