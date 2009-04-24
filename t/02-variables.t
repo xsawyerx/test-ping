@@ -1,4 +1,4 @@
-#!perl
+#!perl -T
 
 # we're checking that all the variables that need to exist do exist
 
