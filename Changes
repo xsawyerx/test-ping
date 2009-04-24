@@ -3,6 +3,7 @@ Revision history for Test-Ping
 0.05
         some POD changes and subroutine returns to keep up with perlcritic
         added -T to tests
+        added 03-icmp.t
 
 0.04    24.04.09
         added test for possible bug in Net::Ping
