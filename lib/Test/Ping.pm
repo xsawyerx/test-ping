@@ -13,7 +13,7 @@ our $VERSION       = '0.04';
 # Net::Ping variables
 # took the defaults, just in case
 our $PROTO             = 'tcp';
-our $PORT              = 7;     # echo port, default
+#our $PORT              = 7;     # echo port, default
 #our $BIND              = q{};   # won't be used for now
 our $TIMEOUT           = 5;
 our $SOURCE_VERIFY     = 1;
@@ -36,7 +36,7 @@ sub _update_variables {
 # BIND currently disabled
 #        BIND     => { value => $BIND,    method => 'bind'    },
         PROTO     => { value => $PROTO,   method => $method_ignore },
-        PORT      => { value => $PORT,    method => 'port_number'  },
+#        PORT      => { value => $PORT,    method => 'port_number'  },
         TIMEOUT   => { value => $TIMEOUT, method => $method_ignore },
 
         SOURCE_VERIFY     => {
@@ -62,8 +62,6 @@ sub _update_variables {
         my $new_var = $methods{$var}->{'value'} || $EMPTY;
 
         if ( $new_var ne $old_var ) {
-            print STDERR "testing $var\n";
-            print STDERR "PREVIOUS: $old_var, NEW: $new_var\n";
             # var has changed
             my $run_method = $methods{$var}->{'method'};
 

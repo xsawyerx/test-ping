@@ -5,12 +5,12 @@
 use strict;
 use warnings;
 
-use Test::More tests => 6;
+use Test::More tests => 5;
 use Test::Ping;
 
 my %vars = (
     PROTO             => 'icmp',
-    PORT              => 9000,
+#    PORT              => 9000, # currently disabled
 #    BIND              => 1,  # currently disabled
     TIMEOUT           => 30,
     SOURCE_VERIFY     => 1,
