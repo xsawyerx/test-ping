@@ -2,11 +2,14 @@
 Build.PL
 Changes
 lib/Test/Ping.pm
+lib/Test/Ping/Ties/PROTO.pm
 MANIFEST
 README
 t/00-load.t
 t/01-simple.t
-t/02-variables.t
+t/03-icmp.t
+t/04-object.t
+t/05-udp_tcp_inst.t
 t/boilerplate.t
 t/pod-coverage.t
 t/pod.t
