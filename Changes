@@ -8,6 +8,8 @@ Revision history for Test-Ping
         introducing Tie::Scalar to replace _update_variables()
         added Test::Ping::Ties::PROTO.pm
         removed t/02-variables.t
+        updated POD
+        removed pos_bug_net_ping.t - it's not a bug
 
 0.04    24.04.09
         added test for possible bug in Net::Ping
