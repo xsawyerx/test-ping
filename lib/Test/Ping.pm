@@ -100,7 +100,15 @@ sub _has_var_ok {
     return 1;
 }
 
-sub _get_object { return $OBJPATH; }
+sub _ping_object {
+    my $obj = shift || q{};
+
+    if ( ref $obj eq 'Net::Ping' ) {
+        $OBJPATH = $obj;
+    }
+
+    return $OBJPATH;
+}
 
 END { $OBJPATH->close(); }
 
@@ -186,13 +194,13 @@ This is used to debug the actual module, if you wanna make sure it works.
 
 At a later stage, hopefull as soon as possible, this will actually run this:
 
-    is( Test::Ping->_get_object()->{'proto'}, 'icmp', 'has correct protocol' )
+    is( Test::Ping->_ping_object()->{'proto'}, 'icmp', 'has correct protocol' )
 
 However, you'll still be able to use the first syntax.
 
-For _get_object() method, keep reading.
+For _ping_object() method, keep reading.
 
-=head2 _get_object
+=head2 _ping_object
 
 When debugging behavior, fetching an internal object from a producedural module can be a bit difficult (especially when it has base inheritence with another one).
 

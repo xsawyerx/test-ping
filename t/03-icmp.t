@@ -1,6 +1,7 @@
 #!perl -T
 
 # this is a (little) cleaner version of the icmp tests in Net::Ping
+# original name: 110_icmp_inst.t
 
 use strict;
 use warnings;

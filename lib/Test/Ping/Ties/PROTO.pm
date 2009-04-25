@@ -6,11 +6,13 @@ use warnings;
 use Net::Ping;
 use Tie::Scalar;
 
-sub TIESCALAR { return bless {}, shift;     }
-sub FETCH     { return $Test::Ping::PROTO;  }
+our $VERSION = '0.02';
 
-sub STORE {
-    Test::Ping->_get_object() = Net::Ping->new($_[1]);
-}
+sub TIESCALAR { return bless {}, shift;                              }
+sub FETCH     { return $Test::Ping::PROTO;                           }
+sub STORE     { Test::Ping->_ping_object( Net::Ping->new( $_[1] ) ); }
 
 1;
+
+__END__
+

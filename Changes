@@ -4,7 +4,7 @@ Revision history for Test-Ping
         some POD changes and subroutine returns to keep up with perlcritic
         added -T to tests
         added 03-icmp.t
-        added 04-object.t and _get_object()
+        added 04-object.t and _ping_object()
         introducing Tie::Scalar to replace _update_variables()
         added Test::Ping::Ties::PROTO.pm
         removed t/02-variables.t
