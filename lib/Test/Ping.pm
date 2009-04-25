@@ -1,7 +1,8 @@
 package Test::Ping;
+use Test::Ping::Ties::PROTO;
 
-use warnings;
 use strict;
+use warnings;
 
 my  $CLASS         = __PACKAGE__;
 my  $HASHPATH      = '_net-ping';
@@ -12,13 +13,13 @@ our $VERSION       = '0.05';
 
 # Net::Ping variables
 # took the defaults, just in case
-our $PROTO             = 'tcp';
-#our $PORT              = 7;     # echo port, default
-#our $BIND              = q{};   # won't be used for now
-our $TIMEOUT           = 5;
-our $SOURCE_VERIFY     = 1;
-our $SERVICE_CHECK     = 0;
-our $TCP_SERVICE_CHECK = 0;     # deprecated, but still, why not
+our $PROTO;
+#our $PORT;
+#our $BIND;
+our $TIMEOUT;
+our $SOURCE_VERIFY;
+our $SERVICE_CHECK;
+our $TCP_SERVICE_CHECK;
 
 BEGIN {
     use base 'Test::Builder::Module';
@@ -26,6 +27,8 @@ BEGIN {
 
     __PACKAGE__->builder
                ->{'_net-ping_object'} = Net::Ping->new($PROTO);
+
+    tie $PROTO, 'Test::Ping::Ties::PROTO';
 }
 
 sub _update_variables {
