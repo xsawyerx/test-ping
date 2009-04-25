@@ -5,6 +5,9 @@ Revision history for Test-Ping
         added -T to tests
         added 03-icmp.t
         added 04-object.t and _get_object()
+        introducing Tie::Scalar to replace _update_variables()
+        added Test::Ping::Ties::PROTO.pm
+        removed t/02-variables.t
 
 0.04    24.04.09
         added test for possible bug in Net::Ping
