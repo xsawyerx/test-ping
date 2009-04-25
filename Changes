@@ -1,6 +1,6 @@
 Revision history for Test-Ping
 
-0.05
+0.05    26.04.09
         some POD changes and subroutine returns to keep up with perlcritic
         added -T to tests
         added 03-icmp.t
