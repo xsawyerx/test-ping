@@ -14,8 +14,8 @@ our $VERSION       = '0.05';
 # Net::Ping variables
 # took the defaults, just in case
 our $PROTO;
-#our $PORT;
-#our $BIND;
+our $PORT;
+our $BIND;
 our $TIMEOUT;
 our $SOURCE_VERIFY;
 our $SERVICE_CHECK;
