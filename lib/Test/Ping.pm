@@ -12,7 +12,6 @@ our @EXPORT        = qw( ping_ok );
 our $VERSION       = '0.05';
 
 # Net::Ping variables
-# took the defaults, just in case
 our $PROTO;
 our $PORT;
 our $BIND;
@@ -139,13 +138,15 @@ ping_ok
 
 =head1 SUPPORTED VARIABLES
 
-Currently some variables are suppose to be implemented but there are still no test cases, and until there are test cases (which is exactly what I'm working on right now), nothing should be assumed as supported. Either wait, write a test or try it out.
+Only variables which have tests would be noted as supported. Tests is actually what I'm working on right now.
+
+=head2 PROTO
+
+Important to note: setting this will reset the object and everything it's using back to defaults. Why? Because that's how it works, and I don't intend to bypass it - if at all - until a much later stage.
 
 =head1 INTEND-TO-SUPPORT VARIABLES
 
 These are variables I intend to support, so stay tuned or just send a patch.
-
-=head2 PROTO
 
 =head2 TIMEOUT
 
@@ -159,8 +160,6 @@ These are variables I intend to support, so stay tuned or just send a patch.
 
 =head2 PORT
 
-There is a possible bug in Net::Ping, in which if you change the port, the subsequent test results return bad. I sent a bug report with a test case to Net::Ping. Hopefully they will reply soon (either with a patch, a fix, or a reason why this isn't really a bug) and as soon as that happens, I'll update Test::Ping and the POD.
-
 =head2 BIND
 
 =head1 INTERNAL METHODS
@@ -171,6 +170,8 @@ Updates the internal variables, used by Net::Ping.
 
 Gets the test builder object, returns nothing.
 
+Soon to be deprecated.
+
 =head2 _has_var_ok( $var_name, $var_value, $description )
 
 Gets a variable name to test, what to test against and the name of the test. Runs an actual test using Test::Builder.
@@ -180,14 +181,24 @@ This is used to debug the actual module, if you wanna make sure it works.
     use Test::More tests => 1;
     use Test::Ping;
 
-    $Test::Ping::PROT = 'icmp';
-    _has_var_ok( 'PROT', 'icmp', 'has correct protocol' )
+    $Test::Ping::PROTO = 'icmp';
+    _has_var_ok( 'PROTO', 'icmp', 'has correct protocol' )
+
+At a later stage, hopefull as soon as possible, this will actually run this:
+
+    is( Test::Ping->_get_object()->{'proto'}, 'icmp', 'has correct protocol' )
+
+However, you'll still be able to use the first syntax.
+
+For _get_object() method, keep reading.
 
 =head2 _get_object
 
 When debugging behavior, fetching an internal object from a producedural module can be a bit difficult (especially when it has base inheritence with another one).
 
 This method allows you (or me) to fetch the actual Net::Ping object from Test::Ping. It eases testing and assurance.
+
+This is used by the Tie functions to set the variables for the object for you.
 
 =head1 AUTHOR
 
