@@ -1,4 +1,5 @@
 package Test::Ping;
+use Test::Ping::Ties::PORT;
 use Test::Ping::Ties::PROTO;
 use Test::Ping::Ties::TIMEOUT;
 
@@ -9,7 +10,7 @@ my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
 our @EXPORT        = qw( ping_ok ping_not_ok );
-our $VERSION       = '0.06';
+our $VERSION       = '0.07';
 
 # Net::Ping variables
 our $PROTO;
@@ -27,6 +28,7 @@ BEGIN {
     __PACKAGE__->builder
                ->{'_net-ping_object'} = Net::Ping->new($PROTO);
 
+    tie $PORT,    'Test::Ping::Ties::PORT';
     tie $PROTO,   'Test::Ping::Ties::PROTO';
     tie $TIMEOUT, 'Test::Ping::Ties::TIMEOUT';
 }
@@ -82,7 +84,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.06
+Version 0.07
 
 =head1 SYNOPSIS
 
