@@ -2,6 +2,7 @@
 Build.PL
 Changes
 lib/Test/Ping.pm
+lib/Test/Ping/Ties/PORT.pm
 lib/Test/Ping/Ties/PROTO.pm
 lib/Test/Ping/Ties/TIMEOUT.pm
 MANIFEST
@@ -13,6 +14,7 @@ t/04-object.t
 t/05-udp_tcp_stream_syn_inst.t
 t/06-alarm.t
 t/07-timeout.t
+t/08-ping_tcp.t
 t/boilerplate.t
 t/pod-coverage.t
 t/pod.t

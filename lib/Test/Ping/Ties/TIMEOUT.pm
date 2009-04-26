@@ -20,7 +20,7 @@ __END__
 
 Test::Ping::Ties::TIMEOUT - Timeout Tie variable to Test::Ping
 
-=head1 VERSON
+=head1 VERSION
 
 Version 0.02
 

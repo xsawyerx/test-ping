@@ -1,11 +1,13 @@
 Revision history for Test-Ping
 
-0.07
+0.07    27.04.09
         rewrote t/06-alarm.t
         rewrote Test::Ping::Ties::TIMEOUT, Test::Ping::Ties::TIMEOUT
         added Test::Timer as possible skip for testing of t/06-alarm.t
         added Test::Ping::Ties::PORT
         added t/08-ping_tcp.t
+        fixed no. of tests in POD synopsis of Ping.pm
+        added a lot to the POD
 
 0.06    26.04.09
         moved t/05-udp_tcp_inst.t to t/05-udp_tcp_stream_syn_inst.t

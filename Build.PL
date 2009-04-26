@@ -12,6 +12,7 @@ my $builder = Module::Build->new(
     },
     requires => {
         'Net::Ping'     => 2.33,
+        'Tie::Scalar'   => 0,
         'Test::Builder' => 0.86,
     },
     add_to_cleanup      => [ 'Test-Ping-*' ],
