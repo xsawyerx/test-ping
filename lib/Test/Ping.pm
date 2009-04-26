@@ -27,7 +27,8 @@ BEGIN {
     __PACKAGE__->builder
                ->{'_net-ping_object'} = Net::Ping->new($PROTO);
 
-    tie $PROTO, 'Test::Ping::Ties::PROTO';
+    tie $PROTO,   'Test::Ping::Ties::PROTO';
+    tie $TIMEOUT, 'Test::Ping::Ties::TIMEOUT';
 }
 
 sub ping_ok {
