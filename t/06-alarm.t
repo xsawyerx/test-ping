@@ -24,21 +24,27 @@ SKIP: {
 
     eval {
         my $timeout = 11;
-
         ok( 1, 'In eval' ); # In eval
+
         local $SIG{ALRM} = sub { die "alarm works" };
         ok( 1, 'SIGALRM can be set on this platform' );
+
         alarm $timeout;
         ok( 1, 'alarm can be set on this platform' );
 
-        # TODO: rewrite this using Test::Ping
         my $start = time;
         while (1) {
-            my $ping = Net::Ping->new("tcp", 2);
             # It does not matter if alive or not
-            $ping->ping("127.0.0.1");
-            $ping->ping("172.29.249.249");
-            die "alarm failed" if time > $start + $timeout + 1;
+
+            $Test::Ping::PROTO   = 'tcp';
+            $Test::Ping::TIMEOUT = 2;
+
+            Test::Ping->_ping_object()->ping('127.0.0.1');
+            Test::Ping->_ping_object()->ping('172.29.249.249');
+
+            if ( time > $start + $timeout + 1 ) {
+                die 'alarm failed';
+            }
         }
     };
 }
