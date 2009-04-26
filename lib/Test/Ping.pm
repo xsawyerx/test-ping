@@ -5,7 +5,6 @@ use strict;
 use warnings;
 
 my  $CLASS         = __PACKAGE__;
-my  $HASHPATH      = '_net-ping';
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
 our @EXPORT        = qw( ping_ok );
@@ -44,13 +43,12 @@ sub ping_ok {
 sub _has_var_ok {
     my ( $var_name, $var_value, $name ) = @_;
     my $tb = $CLASS->builder;
-    $tb->is_eq( $tb->{$HASHPATH}->{$var_name}, $var_value, $name );
-
+    $tb->is_eq( $OBJPATH->{$var_name}, $var_value, $name );
     return 1;
 }
 
 sub _ping_object {
-    my $obj = shift || q{};
+    my $obj = $_[1] || $_[0] || q{};
 
     if ( ref $obj eq 'Net::Ping' ) {
         $OBJPATH = $obj;
@@ -120,14 +118,6 @@ These are variables I intend to support, so stay tuned or just send a patch.
 =head2 BIND
 
 =head1 INTERNAL METHODS
-
-=head2 _update_variables($tb)
-
-Updates the internal variables, used by Net::Ping.
-
-Gets the test builder object, returns nothing.
-
-Soon to be deprecated.
 
 =head2 _has_var_ok( $var_name, $var_value, $description )
 

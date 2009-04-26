@@ -15,10 +15,10 @@ SKIP: {
 
     my $proto = 'udp';
     $Test::Ping::PROTO = $proto;
-    Test::Ping::_has_var_ok( 'PROTO', $proto, "Can be initialized for $proto" );
+    Test::Ping::_has_var_ok( 'proto', $proto, "Can be initialized for $proto" );
 
     $proto = 'tcp';
     $Test::Ping::PROTO = $proto;
-    Test::Ping::_has_var_ok( 'PROTO', $proto, "Can be initialized for $proto" );
+    Test::Ping::_has_var_ok( 'proto', $proto, "Can be initialized for $proto" );
 }
 
