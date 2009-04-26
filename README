@@ -2,12 +2,12 @@ NAME
     Test::Ping - Testing pings using Net::Ping
 
 VERSION
-    Version 0.06
+    Version 0.07
 
 SYNOPSIS
     This module helps test pings using Net::Ping
 
-        use Test::More tests => 1;
+        use Test::More tests => 2;
         use Test::Ping;
 
         my $good_host = '127.0.0.1';
@@ -16,6 +16,13 @@ SYNOPSIS
         ping_ok(     $good_host, "able to ping $good_host" );
         ping_not_ok( $bad_host,  "can't ping $bad_host"    );
         ...
+
+DESCRIPTION
+    Using this module you do not have to work with an object, but can
+    instead use actual procedural testing functions, which is cleaner and
+    more straight forward for testing purposes. This module keeps track of
+    the object for you, starting and closing it and provides a nifty way of
+    testing for pings.
 
 SUBROUTINES/METHODS
   ping_ok( $host, $test )
@@ -33,25 +40,30 @@ SUPPORTED VARIABLES
     Only variables which have tests would be noted as supported. Tests is
     actually what I'm working on right now.
 
+    PROTO, TIMEOUT and PORT only change the values in the object hash, and
+    don't run any methods or recreate the object. That's what the Net::Ping
+    testing suite does and that's the spec I'm following here.
+
   PROTO
-    Warning: setting this will reset the object and everything it's using
-    back to defaults. Why? Because that's how it works, and I don't intend
-    to bypass it - if at all - until a much later stage.
+    Changes the 'proto' hash value.
 
   TIMEOUT
-    Warning: setting this will reset the object and everything it's using
-    back to defaults. Why? Because that's how it works, and I don't intend
-    to bypass it - if at all - until a much later stage.
+    Changes the 'timeout' hash value.
+
+  PORT
+    Changes the 'port_num' hash value.
 
 INTEND-TO-SUPPORT VARIABLES
     These are variables I intend to support, so stay tuned or just send a
     patch.
 
+    Generally speaking, variables are added whenever there is a test they
+    have to pass.
+
   SOURCE_VERIFY
   SERVICE_CHECK
   TCP_SERVICE_CHECK
 DISABLED TILL FURTHER NOTICE VARIABLES
-  PORT
   BIND
 INTERNAL METHODS
   _has_var_ok( $var_name, $var_value, $description )
@@ -66,14 +78,19 @@ INTERNAL METHODS
 
         # Test::Ping calls the protocol variable 'PROTO',
         # but Net::Ping calls it internally (in the hash) 'proto'
+        # (this is documented above under PROTO)
         # this is checking against Net::Ping specifically
 
         $Test::Ping::PROTO = 'icmp';
-        _has_var_ok( 'proto', 'icmp', 'Net::Ping has correct protocol variable' )
+        Test::Ping::_has_var_ok(
+            'proto',
+            'icmp',
+            'Net::Ping has correct protocol variable',
+        );
 
   _ping_object
-    When debugging behavior, fetching an internal object from a producedural
-    module can be a bit difficult (especially when it has base inheritence
+    When debugging behavior, fetching an internal object from a procedural
+    module can be a bit difficult (especially when it has base inheritance
     with another one).
 
     This method allows you (or me) to fetch the actual Net::Ping object from
@@ -81,6 +98,25 @@ INTERNAL METHODS
 
     This is used by the Tie functions to set the variables for the object
     for you.
+
+        use Test::Ping;
+        use Data::Dumper;
+
+        print 'Object internals: ' . Dumper( Test::Ping::_ping_object() );
+
+    Or you could also change the Net::Ping object to one of your own:
+
+        use Test::Ping;
+        use Net::Ping;
+
+        Test::Ping::_ping_object( Net::Ping->new(@opts) );
+
+    However, you should be warned. I test for a Net::Ping object so trying
+    to pass other objects will fail. If anyone needs this changed or any
+    reason, contact me and I'll consider it.
+
+DEPENDENCIES
+    This module uses Net::Ping.
 
 AUTHOR
     Sawyer X, "<xsawyerx at cpan.org>"
@@ -105,19 +141,24 @@ SUPPORT
 
     You can also look for information at:
 
-    * GitHub Website:
+    *   GitHub Website:
+
         <http://github.com/xsawyerx/test-ping/tree/master>
 
-    * RT: CPAN's request tracker
+    *   RT: CPAN's request tracker
+
         <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Ping>
 
-    * AnnoCPAN: Annotated CPAN documentation
+    *   AnnoCPAN: Annotated CPAN documentation
+
         <http://annocpan.org/dist/Test-Ping>
 
-    * CPAN Ratings
+    *   CPAN Ratings
+
         <http://cpanratings.perl.org/d/Test-Ping>
 
-    * Search CPAN
+    *   Search CPAN
+
         <http://search.cpan.org/dist/Test-Ping/>
 
 ACKNOWLEDGEMENTS
