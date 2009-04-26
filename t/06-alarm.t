@@ -18,10 +18,13 @@ use English '-no_match_vars';
 
 SKIP: {
     my $debug_vars = "$OSNAME $EXECUTABLE_NAME $]";
-    eval 'require Socket'          || skip 'No Socket',                    2;
-    eval { alarm 0; 1; }           || skip "alarm borks on $debug_vars ?", 2;
-    eval 'require Test::Timer'     || skip 'No Test::Timer',               2;
-    getservbyname( 'echo', 'tcp' ) || skip 'No echo port',                 2;
+    eval 'use Socket';
+    if ($EVAL_ERROR) { skip 'No Socket', 2; }
+
+    eval 'use Test::Timer';
+    if ($EVAL_ERROR) { skip 'No Test::Timer', 2; }
+
+    getservbyname( 'echo', 'tcp' ) || skip 'No echo port', 2;
 
     my $test = sub { Test::Ping->_ping_object()->ping('1.1.1.1') };
 
