@@ -8,7 +8,7 @@ use warnings;
 my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
-our @EXPORT        = qw( ping_ok );
+our @EXPORT        = qw( ping_ok ping_not_ok );
 our $VERSION       = '0.05';
 
 # Net::Ping variables
@@ -37,6 +37,17 @@ sub ping_ok {
 
     my $alive = $pinger->ping( $host, $TIMEOUT );
     $tb->ok( $alive, $name );
+
+    return 1;
+}
+
+sub ping_not_ok {
+    my ( $host, $name ) = @_;
+    my $tb     = $CLASS->builder;
+    my $pinger = $OBJPATH;
+
+    my $alive = $pinger->ping( $host, $TIMEOUT );
+    $tb->ok( !$alive, $name );
 
     return 1;
 }
@@ -79,7 +90,11 @@ This module helps test pings using Net::Ping
     use Test::More tests => 1;
     use Test::Ping;
 
-    ping_ok( $host, "able to ping $host" );
+    my $good_host = '127.0.0.1';
+    my $bad_host  = '1.1.1.1;
+
+    ping_ok(     $good_host, "able to ping $good_host" );
+    ping_not_ok( $bad_host,  "can't ping $bad_host"    );
     ...
 
 =head1 SUBROUTINES/METHODS
@@ -88,9 +103,15 @@ This module helps test pings using Net::Ping
 
 Checks if a host replies to ping correctly.
 
+=head2 ping_not_ok( $host, $test )
+
+Does the exact opposite of ping_ok().
+
 =head1 EXPORT
 
 ping_ok
+
+ping_not_ok
 
 =head1 SUPPORTED VARIABLES
 
@@ -98,13 +119,15 @@ Only variables which have tests would be noted as supported. Tests is actually w
 
 =head2 PROTO
 
-Important to note: setting this will reset the object and everything it's using back to defaults. Why? Because that's how it works, and I don't intend to bypass it - if at all - until a much later stage.
+Warning: setting this will reset the object and everything it's using back to defaults. Why? Because that's how it works, and I don't intend to bypass it - if at all - until a much later stage.
+
+=head2 TIMEOUT
+
+Warning: setting this will reset the object and everything it's using back to defaults. Why? Because that's how it works, and I don't intend to bypass it - if at all - until a much later stage.
 
 =head1 INTEND-TO-SUPPORT VARIABLES
 
 These are variables I intend to support, so stay tuned or just send a patch.
-
-=head2 TIMEOUT
 
 =head2 SOURCE_VERIFY
 
@@ -129,16 +152,12 @@ This is used to debug the actual module, if you wanna make sure it works.
     use Test::More tests => 1;
     use Test::Ping;
 
+    # Test::Ping calls the protocol variable 'PROTO',
+    # but Net::Ping calls it internally (in the hash) 'proto'
+    # this is checking against Net::Ping specifically
+
     $Test::Ping::PROTO = 'icmp';
-    _has_var_ok( 'PROTO', 'icmp', 'has correct protocol' )
-
-At a later stage, hopefull as soon as possible, this will actually run this:
-
-    is( Test::Ping->_ping_object()->{'proto'}, 'icmp', 'has correct protocol' )
-
-However, you'll still be able to use the first syntax.
-
-For _ping_object() method, keep reading.
+    _has_var_ok( 'proto', 'icmp', 'Net::Ping has correct protocol variable' )
 
 =head2 _ping_object
 
