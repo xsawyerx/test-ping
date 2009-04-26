@@ -30,55 +30,6 @@ BEGIN {
     tie $PROTO, 'Test::Ping::Ties::PROTO';
 }
 
-sub _update_variables {
-    my $tb    = shift;
-    my $EMPTY = q{};
-
-    my %methods = (
-#        BIND      => { value => $BIND,    method => 'bind'         },
-#        PORT      => { value => $PORT,    method => 'port_number'  },
-        PROTO     => { value => $PROTO,   method => $method_ignore },
-        TIMEOUT   => { value => $TIMEOUT, method => $method_ignore },
-
-        SOURCE_VERIFY     => {
-            value  => $SOURCE_VERIFY,
-            method => 'source_verify',
-        },
-
-        SERVICE_CHECK     => {
-            value  => $SERVICE_CHECK,
-            method => 'service_check',
-        },
-
-        TCP_SERVICE_CHECK => {
-            value  => $TCP_SERVICE_CHECK,
-            method => 'tcp_service_check',
-        },
-
-    );
-
-    foreach my $var ( keys %methods ) {
-        # check if var has changed
-        my $old_var = $tb->{$HASHPATH}->{$var} || $EMPTY;
-        my $new_var = $methods{$var}->{'value'} || $EMPTY;
-
-        if ( $new_var ne $old_var ) {
-            # var has changed
-            my $run_method = $methods{$var}->{'method'};
-
-            # update the object
-            if ( $run_method ne $method_ignore ) {
-                $OBJPATH->$run_method($new_var);
-            }
-
-            # update the variables hash
-            $tb->{$HASHPATH}->{$var} = $new_var;
-        }
-    }
-
-    return 1;
-}
-
 sub ping_ok {
     my ( $host, $name ) = @_;
     my $tb     = $CLASS->builder;
