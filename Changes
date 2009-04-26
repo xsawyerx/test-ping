@@ -1,5 +1,9 @@
 Revision history for Test-Ping
 
+0.06
+        moved t/05-udp_tcp_inst.t to t/05-udp_tcp_stream_syn_inst.t
+        adding test for stream inst and syn inst
+
 0.05    26.04.09
         some POD changes and subroutine returns to keep up with perlcritic
         added -T to tests
@@ -15,10 +19,11 @@ Revision history for Test-Ping
         added test for possible bug in Net::Ping
         got it stable
         removed BIND and PORT support for now
-        
+
 0.03    22.04.09
         separated variable tests to a different file
-        added TIMEOUT, PORT, BIND, SOURCE_VERIFY, SERVICE_CHECK, TCP_SERVICE_CHECK
+        added TIMEOUT, PORT, BIND, SOURCE_VERIFY, SERVICE_CHECK,
+            TCP_SERVICE_CHECK
 
 0.02    22.04.09
         ping_ok() now works

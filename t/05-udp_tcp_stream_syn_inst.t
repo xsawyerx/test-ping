@@ -6,19 +6,26 @@
 use strict;
 use warnings;
 
-use Test::More tests => 2;
+use Test::More tests => 3;
 use Test::Ping;
+
+sub test_proto {
+    my $proto = shift;
+    $Test::Ping::PROTO = $proto;
+    Test::Ping::_has_var_ok( 'proto', $proto, "Can be initialized for $proto" );
+}
+
+SKIP: {
+    eval 'require Socket'          || skip 'No Socket',    2;
+    getservbyname( 'echo', 'udp' ) || skip 'No echo port', 2;
+
+    test_proto('udp');
+    test_proto('tcp');
+}
 
 SKIP: {
     eval 'require Socket'          || skip 'No Socket',    1;
     getservbyname( 'echo', 'udp' ) || skip 'No echo port', 1;
 
-    my $proto = 'udp';
-    $Test::Ping::PROTO = $proto;
-    Test::Ping::_has_var_ok( 'proto', $proto, "Can be initialized for $proto" );
-
-    $proto = 'tcp';
-    $Test::Ping::PROTO = $proto;
-    Test::Ping::_has_var_ok( 'proto', $proto, "Can be initialized for $proto" );
+    test_proto('stream');
 }
-
