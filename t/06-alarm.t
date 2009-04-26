@@ -13,7 +13,6 @@ use warnings;
 
 use Test::More tests => 2;
 use Test::Ping;
-use Test::Timer;
 
 use English '-no_match_vars';
 
