@@ -17,7 +17,6 @@ use Test::Ping;
 use English '-no_match_vars';
 
 SKIP: {
-    my $debug_vars = "$OSNAME $EXECUTABLE_NAME $]";
     eval 'use Socket';
     if ($EVAL_ERROR) { skip 'No Socket', 2; }
 
