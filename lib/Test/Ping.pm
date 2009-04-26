@@ -1,5 +1,6 @@
 package Test::Ping;
 use Test::Ping::Ties::PROTO;
+use Test::Ping::Ties::TIMEOUT;
 
 use strict;
 use warnings;
