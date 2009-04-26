@@ -1,6 +1,6 @@
 #!perl -T
 
-# this is a (little) cleaner version of the icmp tests in Net::Ping
+# this is a (little) cleaner version of a Net::Ping test(s)
 # original name: 110_icmp_inst.t
 
 use strict;
