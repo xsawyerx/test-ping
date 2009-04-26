@@ -9,7 +9,7 @@ my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
 our @EXPORT        = qw( ping_ok ping_not_ok );
-our $VERSION       = '0.05';
+our $VERSION       = '0.06';
 
 # Net::Ping variables
 our $PROTO;
@@ -81,7 +81,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =head1 SYNOPSIS
 

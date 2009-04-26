@@ -1,6 +1,6 @@
 Revision history for Test-Ping
 
-0.06
+0.06    26.04.09
         moved t/05-udp_tcp_inst.t to t/05-udp_tcp_stream_syn_inst.t
         adding test for stream inst and syn inst
         added t/06-alarm.t
