@@ -1,7 +1,8 @@
 #!perl -T
 
 # this is a (little) cleaner version of the icmp tests in Net::Ping
-# original name: 120_udp_inst.t, 130_tcp_inst.t
+# original names: 120-udp_inst.t, 130-tcp_inst.t, 140-stream_inst,
+#   150-syn_inst.t
 
 use strict;
 use warnings;
