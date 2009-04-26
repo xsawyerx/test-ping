@@ -6,7 +6,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 3;
+use Test::More tests => 4;
 use Test::Ping;
 
 sub test_proto {
@@ -24,8 +24,9 @@ SKIP: {
 }
 
 SKIP: {
-    eval 'require Socket'          || skip 'No Socket',    1;
-    getservbyname( 'echo', 'udp' ) || skip 'No echo port', 1;
+    eval 'require Socket'          || skip 'No Socket',    2;
+    getservbyname( 'echo', 'tcp' ) || skip 'No echo port', 2;
 
     test_proto('stream');
+    test_proto('syn');
 }
