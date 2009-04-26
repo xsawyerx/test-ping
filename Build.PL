@@ -8,7 +8,8 @@ my $builder = Module::Build->new(
     dist_author         => 'Sawyer X <xsawyerx@cpan.org>',
     dist_version_from   => 'lib/Test/Ping.pm',
     build_requires => {
-        'Test::More' => 0,
+        'Test::More'  => 0,
+        'Test::Timer' => 0.05,
     },
     requires => {
         'Net::Ping'     => 2.33,
