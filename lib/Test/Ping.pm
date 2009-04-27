@@ -58,7 +58,7 @@ sub ping_not_ok {
 
 sub create_ping_object_ok {
     my @args = @_;
-    my $name = pop @args;
+    my $name = pop @args || q{};
     my $tb   = $CLASS->builder;
     $OBJPATH = Net::Ping->new(@args);
 
