@@ -14,9 +14,10 @@ our @EXPORT        = qw( ping_ok ping_not_ok create_ping_object_ok );
 our $VERSION       = '0.08';
 
 # Net::Ping variables
-our $PROTO;
 our $PORT;
 our $BIND;
+our $PROTO;
+our $HIRES;
 our $TIMEOUT;
 our $SOURCE_VERIFY;
 our $SERVICE_CHECK;
@@ -31,6 +32,7 @@ BEGIN {
 
     tie $PORT,    'Test::Ping::Ties::PORT';
     tie $PROTO,   'Test::Ping::Ties::PROTO';
+    tie $HIRES,   'Test::Ping::Ties::HIRES';
     tie $TIMEOUT, 'Test::Ping::Ties::TIMEOUT';
 }
 
