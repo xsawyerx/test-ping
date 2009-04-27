@@ -1,10 +1,12 @@
 Revision history for Test-Ping
 
-0.08
+0.08    28.04.09
         fixed t/03-icmp.t test
         added method (and POD for) create_ping_object_ok()
         fixed t/05-udp_tcp_stream_syn_inst.t to use create_ping_object_ok()
         ping_ok() now returns return value and duration like Net::Ping's ping()
+        added HIRES support even though I thought I wouldn't
+        ported HIRES test from Net::Ping (t/09-ping_hires.t)
 
 0.07    27.04.09
         rewrote t/06-alarm.t
