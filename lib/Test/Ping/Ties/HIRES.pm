@@ -8,9 +8,9 @@ use Tie::Scalar;
 
 our $VERSION = '0.01';
 
-sub TIESCALAR { return bless {}, shift;                     }
-sub FETCH     { return Test::Ping->_ping_object->hires();   }
-sub STORE     { Test::Ping->_ping_object()->hires( $_[1] ); }
+sub TIESCALAR { return bless {}, shift;    }
+sub FETCH     { return $Net::Ping::hires;  }
+sub STORE     { $Net::Ping::hires = $_[1]; }
 
 1;
 
