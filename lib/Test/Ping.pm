@@ -1,4 +1,5 @@
 package Test::Ping;
+
 use Test::Ping::Ties::PORT;
 use Test::Ping::Ties::PROTO;
 use Test::Ping::Ties::TIMEOUT;
@@ -10,7 +11,7 @@ my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
 our @EXPORT        = qw( ping_ok ping_not_ok create_ping_object_ok );
-our $VERSION       = '0.07';
+our $VERSION       = '0.08';
 
 # Net::Ping variables
 our $PROTO;
@@ -97,7 +98,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.07
+Version 0.08
 
 =head1 SYNOPSIS
 
@@ -127,11 +128,17 @@ Checks if a host replies to ping correctly.
 
 Does the exact opposite of ping_ok().
 
+=head2 create_ping_object_ok( @args, $test )
+
+This tries to create a ping object and reports a fail or success. The args that should be sent are whatever args that are used with Net::Ping.
+
 =head1 EXPORT
 
 ping_ok
 
 ping_not_ok
+
+create_ping_object_ok
 
 =head1 SUPPORTED VARIABLES
 
@@ -162,8 +169,6 @@ Generally speaking, variables are added whenever there is a test they have to pa
 =head2 SERVICE_CHECK
 
 =head2 TCP_SERVICE_CHECK
-
-=head1 DISABLED TILL FURTHER NOTICE VARIABLES
 
 =head2 BIND
 
@@ -209,6 +214,14 @@ Or you could also change the Net::Ping object to one of your own:
     use Net::Ping;
 
     Test::Ping::_ping_object( Net::Ping->new(@opts) );
+
+And doing it with tests:
+
+    use Test::More tests => 2;
+    use Test::Ping;
+
+    create_ping_object_ok( 'tcp', 2, 'Creating our own Net::Ping object' );
+    ping_ok( $target, "Yay! We can reach $target" );
 
 However, you should be warned. I test for a Net::Ping object so trying to pass other objects will fail. If anyone needs this changed or any reason, contact me and I'll consider it.
 
