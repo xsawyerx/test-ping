@@ -3,6 +3,7 @@ Revision history for Test-Ping
 0.08
         fixed t/03-icmp.t test
         added method (and POD for) create_ping_object_ok()
+        fixed t/05-udp_tcp_stream_syn_inst.t to use create_ping_object_ok()
 
 0.07    27.04.09
         rewrote t/06-alarm.t
