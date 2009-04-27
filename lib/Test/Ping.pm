@@ -43,7 +43,7 @@ sub ping_ok {
     my $pinger = $OBJPATH;
 
     my ( $ret, $duration ) = $pinger->ping( $host, $TIMEOUT );
-    $tb->ok( $duration, $name );
+    $tb->ok( $ret, $name );
 
     return ( $ret, $duration );
 }
