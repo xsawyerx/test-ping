@@ -6,7 +6,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 10;
+use Test::More tests => 11;
 use Test::Ping;
 
 SKIP: {
@@ -36,6 +36,7 @@ SKIP: {
     $Test::Ping::PROTO   = 'tcp';
     $Test::Ping::TIMEOUT = 9;
 
+    create_ping_object_ok( 'tcp', 9, 'Create proper Net::Ping object' );
     ping_ok( 'localhost', 'Test on the default port' );
 
     # Change to use the more common web port.
