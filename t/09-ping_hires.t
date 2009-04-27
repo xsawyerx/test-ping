@@ -46,9 +46,6 @@ SKIP: {
 
     ok( $ret, 'localhost should always be reachable, right?' );
 
-    #use Data::Dumper;
-    #diag( Dumper(Test::Ping->_ping_object) );
-
     # It is extremely likely that the duration contains a decimal
     # point if Time::HiRes is functioning properly, except when it
     # is fast enough to be "0", or slow enough to be exactly "1".
