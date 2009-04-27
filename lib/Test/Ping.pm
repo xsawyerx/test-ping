@@ -135,7 +135,7 @@ Does the exact opposite of ping_ok().
 
 =head2 create_ping_object_ok( @args, $test )
 
-This tries to create a ping object and reports a fail or success. The args that should be sent are whatever args that are used with Net::Ping.
+This tries to create a ping object and reports a fail or success. The args that should be sent are whatever args used with Net::Ping.
 
 =head1 EXPORT
 
@@ -162,6 +162,8 @@ Changes the 'timeout' hash value.
 =head2 PORT
 
 Changes the 'port_num' hash value.
+
+=head2 HIRES
 
 =head1 INTEND-TO-SUPPORT VARIABLES
 
