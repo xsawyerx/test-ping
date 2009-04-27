@@ -39,10 +39,10 @@ sub ping_ok {
     my $tb     = $CLASS->builder;
     my $pinger = $OBJPATH;
 
-    my $alive = $pinger->ping( $host, $TIMEOUT );
-    $tb->ok( $alive, $name );
+    my ( $ret, $duration ) = $pinger->ping( $host, $TIMEOUT );
+    $tb->ok( $duration, $name );
 
-    return 1;
+    return ( $ret, $duration );
 }
 
 sub ping_not_ok {
@@ -123,6 +123,8 @@ Using this module you do not have to work with an object, but can instead use ac
 =head2 ping_ok( $host, $test )
 
 Checks if a host replies to ping correctly.
+
+This returns the return value and duration, just like Net::Ping's ping() method.
 
 =head2 ping_not_ok( $host, $test )
 
