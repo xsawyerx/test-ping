@@ -33,7 +33,7 @@ SKIP: {
     } else {
         $Test::Ping::PROTO = 'icmp';
         my $target         = '127.0.0.1';
-        ping_ok( $target, "ICMP on $target" );
+        create_ping_object_ok( 'icmp', 'Create ICMP ok' );
     }
 }
 

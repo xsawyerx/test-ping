@@ -9,7 +9,7 @@ use warnings;
 my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
-our @EXPORT        = qw( ping_ok ping_not_ok );
+our @EXPORT        = qw( ping_ok ping_not_ok create_ping_object_ok );
 our $VERSION       = '0.07';
 
 # Net::Ping variables
@@ -53,6 +53,19 @@ sub ping_not_ok {
     $tb->ok( !$alive, $name );
 
     return 1;
+}
+
+sub create_ping_object_ok {
+    my @args = @_;
+    my $name = pop @args;
+    my $tb   = $CLASS->builder;
+    $OBJPATH = Net::Ping->new(@args);
+
+    if ($OBJPATH) { 
+        $tb->is_eq( ref $OBJPATH, 'Net::Ping', $name );
+    } else {
+        $tb->ok( 0, $name );
+    }
 }
 
 sub _has_var_ok {
