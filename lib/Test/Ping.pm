@@ -185,6 +185,8 @@ Changes the 'port_num' hash value.
 
 =head2 HIRES
 
+Changes the package variable $hires.
+
 =head1 INTEND-TO-SUPPORT VARIABLES
 
 These are variables I intend to support, so stay tuned or just send a patch.
