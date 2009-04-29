@@ -191,7 +191,7 @@ Changes the package variable $hires.
 
 =head2 SERVICE_CHECK
 
-Changes the attribute 'service_check'.
+Changes the 'econnrefused' hash value.
 
 =head1 INTEND-TO-SUPPORT VARIABLES
 
