@@ -1,9 +1,11 @@
 package Test::Ping;
 
+use Test::Ping::Ties::BIND;
 use Test::Ping::Ties::PORT;
 use Test::Ping::Ties::PROTO;
 use Test::Ping::Ties::HIRES;
 use Test::Ping::Ties::TIMEOUT;
+use Test::Ping::Ties::SOURCE_VERIFY;
 use Test::Ping::Ties::SERVICE_CHECK;
 
 use strict;
