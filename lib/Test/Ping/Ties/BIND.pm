@@ -9,9 +9,9 @@ use Carp;
 
 our $VERSION = '0.01';
 
-sub TIESCALAR { return bless {}, shift;                  }
-sub FETCH     { carp 'Usage: $p->bind($local_addr)';     }
-sub STORE     { Test::Ping-_get_object()->bind( $_[1] ); }
+sub TIESCALAR { return bless {}, shift;                    }
+sub FETCH     { carp 'Usage: $p->bind($local_addr)';       }
+sub STORE     { Test::Ping->_ping_object()->bind( $_[1] ); }
 
 1;
 

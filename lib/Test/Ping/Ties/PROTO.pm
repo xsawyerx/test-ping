@@ -9,7 +9,7 @@ use Tie::Scalar;
 our $VERSION = '0.04';
 
 sub TIESCALAR { return bless {}, shift;                        }
-sub FETCH     { return Test::Ping->_ping_object->{'proto'};    }
+sub FETCH     { return Test::Ping->_ping_object()->{'proto'};  }
 sub STORE     { Test::Ping->_ping_object()->{'proto'} = $_[1]; }
 
 1;

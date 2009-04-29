@@ -6,10 +6,10 @@ use warnings;
 use Net::Ping;
 use Tie::Scalar;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 sub TIESCALAR { return bless {}, shift;                          }
-sub FETCH     { return Test::Ping->_ping_object->{'timeout'};    }
+sub FETCH     { return Test::Ping->_ping_object()->{'timeout'};  }
 sub STORE     { Test::Ping->_ping_object()->{'timeout'} = $_[1]; }
 
 1;
@@ -22,7 +22,7 @@ Test::Ping::Ties::TIMEOUT - Timeout Tie variable to Test::Ping
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =head1 DESCRIPTION
 
