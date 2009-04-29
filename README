@@ -2,7 +2,7 @@ NAME
     Test::Ping - Testing pings using Net::Ping
 
 VERSION
-    Version 0.07
+    Version 0.09
 
 SYNOPSIS
     This module helps test pings using Net::Ping
@@ -28,21 +28,37 @@ SUBROUTINES/METHODS
   ping_ok( $host, $test )
     Checks if a host replies to ping correctly.
 
+    This returns the return value and duration, just like Net::Ping's ping()
+    method.
+
   ping_not_ok( $host, $test )
     Does the exact opposite of ping_ok().
+
+  create_ping_object_ok( @args, $test )
+    This tries to create a ping object and reports a fail or success. The
+    args that should be sent are whatever args used with Net::Ping.
+
+  create_ping_object_not_ok( @args, $test )
+    Tried to create a ping object and attempts to fail. The exactly opposite
+    of the above test.
 
 EXPORT
     ping_ok
 
     ping_not_ok
 
-SUPPORTED VARIABLES
-    Only variables which have tests would be noted as supported. Tests is
-    actually what I'm working on right now.
+    create_ping_object_ok
 
-    PROTO, TIMEOUT and PORT only change the values in the object hash, and
-    don't run any methods or recreate the object. That's what the Net::Ping
-    testing suite does and that's the spec I'm following here.
+    create_ping_object_not_ok
+
+SUPPORTED VARIABLES
+    Variables in Test::Ping are tied scalars. Some variables change the
+    values in the object hash while others run methods. This follows the
+    behavior of Net::Ping. Below you will find each support variable and
+    what it changes.
+
+  BIND
+    Runs the 'bind' method.
 
   PROTO
     Changes the 'proto' hash value.
@@ -53,18 +69,15 @@ SUPPORTED VARIABLES
   PORT
     Changes the 'port_num' hash value.
 
-INTEND-TO-SUPPORT VARIABLES
-    These are variables I intend to support, so stay tuned or just send a
-    patch.
-
-    Generally speaking, variables are added whenever there is a test they
-    have to pass.
+  HIRES
+    Changes the package variable $hires.
 
   SOURCE_VERIFY
+    Changes the package variable $source_verify.
+
   SERVICE_CHECK
-  TCP_SERVICE_CHECK
-DISABLED TILL FURTHER NOTICE VARIABLES
-  BIND
+    Changes the 'econnrefused' hash value.
+
 INTERNAL METHODS
   _has_var_ok( $var_name, $var_value, $description )
     Gets a variable name to test, what to test against and the name of the
@@ -102,21 +115,31 @@ INTERNAL METHODS
         use Test::Ping;
         use Data::Dumper;
 
-        print 'Object internals: ' . Dumper( Test::Ping::_ping_object() );
+        print 'Object internals: ' . Dumper( Test::Ping->_ping_object() );
 
     Or you could also change the Net::Ping object to one of your own:
 
         use Test::Ping;
         use Net::Ping;
 
-        Test::Ping::_ping_object( Net::Ping->new(@opts) );
+        Test::Ping->_ping_object( Net::Ping->new(@opts) );
+
+    And doing it with tests:
+
+        use Test::More tests => 2;
+        use Test::Ping;
+
+        create_ping_object_ok( 'tcp', 2, 'Creating our own Net::Ping object' );
+        ping_ok( $target, "Yay! We can reach $target" );
 
     However, you should be warned. I test for a Net::Ping object so trying
     to pass other objects will fail. If anyone needs this changed or any
     reason, contact me and I'll consider it.
 
 DEPENDENCIES
-    This module uses Net::Ping.
+    This module uses Net::Ping, Tie::Scalar and Carp.
+
+    Test::Timer is used in the test suite.
 
 AUTHOR
     Sawyer X, "<xsawyerx at cpan.org>"
