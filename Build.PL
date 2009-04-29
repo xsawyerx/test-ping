@@ -9,6 +9,7 @@ my $builder = Module::Build->new(
     dist_version_from   => 'lib/Test/Ping.pm',
     build_requires => {
         'Test::More'  => 0,
+        'Test::Timer' => 0.05,
     },
     requires => {
         'Net::Ping'     => 2.33,
