@@ -189,6 +189,10 @@ Changes the 'port_num' hash value.
 
 Changes the package variable $hires.
 
+=head2 SERVICE_CHECK
+
+Changes the attribute 'service_check'.
+
 =head1 INTEND-TO-SUPPORT VARIABLES
 
 These are variables I intend to support, so stay tuned or just send a patch.
@@ -196,8 +200,6 @@ These are variables I intend to support, so stay tuned or just send a patch.
 Generally speaking, variables are added whenever there is a test they have to pass.
 
 =head2 SOURCE_VERIFY
-
-=head2 SERVICE_CHECK
 
 =head2 TCP_SERVICE_CHECK
 

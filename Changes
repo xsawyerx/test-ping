@@ -1,10 +1,11 @@
 Revision history for Test-Ping
 
-0.09
+0.09    29.04.09
         ported 300_ping_stream.t to t/10-ping_stream.t
         ported 400_ping_syn.t to t/11-ping_syn.t
         ported 410_syn_host.t to t/12-syn_host.t
         ported 450_service.t to t/13-service.t
+        ported 500_ping_icmp to 5/14-ping_icmp.t
         added SERVICE_CHECK
 
 0.08    28.04.09
