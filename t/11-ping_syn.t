@@ -62,7 +62,7 @@ SKIP: {
             );
         },
         50,
-        'Creating object'
+        'Creating object',
     );
 
 
