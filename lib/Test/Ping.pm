@@ -11,8 +11,13 @@ use warnings;
 my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
-our @EXPORT        = qw( ping_ok ping_not_ok create_ping_object_ok );
-our $VERSION       = '0.08';
+our $VERSION       = '0.09';
+our @EXPORT        = qw(
+    ping_ok
+    ping_not_ok
+    create_ping_object_ok
+    create_ping_object_not_ok
+);
 
 # Net::Ping variables
 our $PORT;
@@ -72,6 +77,15 @@ sub create_ping_object_ok {
     }
 }
 
+sub create_ping_object_not_ok {
+    my @args = @_;
+    my $name = pop @args || q{};
+    my $tb   = $CLASS->builder;
+    $OBJPATH = Net::Ping->new(@args);
+
+    $tb->ok( !$OBJPATH, $name );
+}
+
 sub _has_var_ok {
     my ( $var_name, $var_value, $name ) = @_;
     my $tb = $CLASS->builder;
@@ -101,7 +115,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.08
+Version 0.09
 
 =head1 SYNOPSIS
 
@@ -137,6 +151,10 @@ Does the exact opposite of ping_ok().
 
 This tries to create a ping object and reports a fail or success. The args that should be sent are whatever args used with Net::Ping.
 
+=head2 create_ping_object_not_ok( @args, $test )
+
+Tried to create a ping object and attempts to fail. The exactly opposite of the above test.
+
 =head1 EXPORT
 
 ping_ok
@@ -144,6 +162,8 @@ ping_ok
 ping_not_ok
 
 create_ping_object_ok
+
+create_ping_object_not_ok
 
 =head1 SUPPORTED VARIABLES
 
