@@ -239,14 +239,14 @@ This is used by the Tie functions to set the variables for the object for you.
     use Test::Ping;
     use Data::Dumper;
 
-    print 'Object internals: ' . Dumper( Test::Ping::_ping_object() );
+    print 'Object internals: ' . Dumper( Test::Ping->_ping_object() );
 
 Or you could also change the Net::Ping object to one of your own:
 
     use Test::Ping;
     use Net::Ping;
 
-    Test::Ping::_ping_object( Net::Ping->new(@opts) );
+    Test::Ping->_ping_object( Net::Ping->new(@opts) );
 
 And doing it with tests:
 
