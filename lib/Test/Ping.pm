@@ -28,7 +28,6 @@ our $HIRES;
 our $TIMEOUT;
 our $SOURCE_VERIFY;
 our $SERVICE_CHECK;
-our $TCP_SERVICE_CHECK;
 
 BEGIN {
     use base 'Test::Builder::Module';
@@ -38,9 +37,11 @@ BEGIN {
                ->{'_net-ping_object'} = Net::Ping->new($PROTO);
 
     tie $PORT,          'Test::Ping::Ties::PORT';
+    tie $BIND,          'Test::Ping::Ties::BIND';
     tie $PROTO,         'Test::Ping::Ties::PROTO';
     tie $HIRES,         'Test::Ping::Ties::HIRES';
     tie $TIMEOUT,       'Test::Ping::Ties::TIMEOUT';
+    tie $SOURCE_VERIFY, 'Test::Ping::Ties::SOURCE_VERIFY';
     tie $SERVICE_CHECK, 'Test::Ping::Ties::SERVICE_CHECK';
 }
 
@@ -169,9 +170,11 @@ create_ping_object_not_ok
 
 =head1 SUPPORTED VARIABLES
 
-Only variables which have tests would be noted as supported. Tests is actually what I'm working on right now.
+Variables in Test::Ping are tied scalars. Some variables change the values in the object hash while others run methods. This follows the behavior of Net::Ping. Below you will find each support variable and what it changes.
 
-PROTO, TIMEOUT and PORT only change the values in the object hash, and don't run any methods or recreate the object. That's what the Net::Ping testing suite does and that's the spec I'm following here.
+=head2 BIND
+
+Runs the 'bind' method.
 
 =head2 PROTO
 
@@ -189,21 +192,13 @@ Changes the 'port_num' hash value.
 
 Changes the package variable $hires.
 
+=head2 SOURCE_VERIFY
+
+Changes the package variable $source_verify.
+
 =head2 SERVICE_CHECK
 
 Changes the 'econnrefused' hash value.
-
-=head1 INTEND-TO-SUPPORT VARIABLES
-
-These are variables I intend to support, so stay tuned or just send a patch.
-
-Generally speaking, variables are added whenever there is a test they have to pass.
-
-=head2 SOURCE_VERIFY
-
-=head2 TCP_SERVICE_CHECK
-
-=head2 BIND
 
 =head1 INTERNAL METHODS
 
@@ -260,7 +255,9 @@ However, you should be warned. I test for a Net::Ping object so trying to pass o
 
 =head1 DEPENDENCIES
 
-This module uses Net::Ping.
+This module uses Net::Ping, Tie::Scalar and Carp.
+
+Test::Timer is used in the test suite.
 
 =head1 AUTHOR
 

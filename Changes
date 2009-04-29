@@ -7,7 +7,9 @@ Revision history for Test-Ping
         ported 450_service.t to t/13-service.t
         ported 500_ping_icmp.t to t/14-ping_icmp.t
         ported 510_ping_udp.t to t/15-ping_udp.t
-        added SERVICE_CHECK
+        (finished porting all tests from Net::Ping)
+        added SERVICE_CHECK, SOURCE_VERIFY, BIND
+        corrected POD _ping_object() example
 
 0.08    28.04.09
         fixed t/03-icmp.t test that prevented installation when admin tests
