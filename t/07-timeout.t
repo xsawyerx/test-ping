@@ -18,3 +18,4 @@ SKIP: {
 
     ping_not_ok( $bad_ip, 'Bad IP cannot ping' );
 }
+
