@@ -4,6 +4,7 @@ use Test::Ping::Ties::PORT;
 use Test::Ping::Ties::PROTO;
 use Test::Ping::Ties::HIRES;
 use Test::Ping::Ties::TIMEOUT;
+use Test::Ping::Ties::SERVICE_CHECK;
 
 use strict;
 use warnings;
@@ -36,10 +37,11 @@ BEGIN {
     __PACKAGE__->builder
                ->{'_net-ping_object'} = Net::Ping->new($PROTO);
 
-    tie $PORT,    'Test::Ping::Ties::PORT';
-    tie $PROTO,   'Test::Ping::Ties::PROTO';
-    tie $HIRES,   'Test::Ping::Ties::HIRES';
-    tie $TIMEOUT, 'Test::Ping::Ties::TIMEOUT';
+    tie $PORT,          'Test::Ping::Ties::PORT';
+    tie $PROTO,         'Test::Ping::Ties::PROTO';
+    tie $HIRES,         'Test::Ping::Ties::HIRES';
+    tie $TIMEOUT,       'Test::Ping::Ties::TIMEOUT';
+    tie $SERVICE_CHECK, 'Test::Ping::Ties::SERVICE_CHECK';
 }
 
 sub ping_ok {
