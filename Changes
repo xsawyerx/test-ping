@@ -1,5 +1,8 @@
 Revision history for Test-Ping
 
+0.09
+        added t/10-ping_stream.t
+
 0.08    28.04.09
         fixed t/03-icmp.t test that prevented installation when admin tests
         added method (and POD for) create_ping_object_ok()
