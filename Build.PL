@@ -12,6 +12,7 @@ my $builder = Module::Build->new(
         'Test::Timer' => 0.05,
     },
     requires => {
+        'Carp'          => 0,
         'Net::Ping'     => 2.33,
         'Tie::Scalar'   => 0,
         'Test::Builder' => 0.86,
