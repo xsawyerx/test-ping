@@ -10,6 +10,7 @@ Revision history for Test-Ping
         (finished porting all tests from Net::Ping)
         added SERVICE_CHECK, SOURCE_VERIFY, BIND
         corrected POD _ping_object() example
+        cleaned up all Ties
 
 0.08    28.04.09
         fixed t/03-icmp.t test that prevented installation when admin tests

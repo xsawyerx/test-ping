@@ -33,8 +33,7 @@ BEGIN {
     use base 'Test::Builder::Module';
     use Net::Ping;
 
-    __PACKAGE__->builder
-               ->{'_net-ping_object'} = Net::Ping->new($PROTO);
+    __PACKAGE__->builder->{'_net-ping_object'} = Net::Ping->new($PROTO);
 
     tie $PORT,          'Test::Ping::Ties::PORT';
     tie $BIND,          'Test::Ping::Ties::BIND';
