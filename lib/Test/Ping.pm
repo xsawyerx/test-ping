@@ -14,7 +14,7 @@ use warnings;
 my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
-our $VERSION       = '0.09';
+our $VERSION       = '0.10';
 our @EXPORT        = qw(
     ping_ok
     ping_not_ok
@@ -74,7 +74,7 @@ sub create_ping_object_ok {
     my $tb   = $CLASS->builder;
     $OBJPATH = Net::Ping->new(@args);
 
-    if ($OBJPATH) { 
+    if ($OBJPATH) {
         $tb->is_eq( ref $OBJPATH, 'Net::Ping', $name );
     } else {
         $tb->ok( 0, $name );
@@ -119,7 +119,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.09
+Version 0.10
 
 =head1 SYNOPSIS
 
@@ -317,5 +317,15 @@ Thanks to everyone who works and contributed to Net::Ping. This module depends s
 Copyright 2009 Sawyer X, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+under the terms of either:
+
+=over 4
+
+=item * the GNU General Public License as published by the Free
+Software Foundation; either version 2, or (at your option) any
+later version, or
+
+=item * the Artistic License version 2.0.
+
+=back
 
