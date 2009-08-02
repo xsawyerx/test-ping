@@ -3,13 +3,15 @@ Build.PL
 Changes
 lib/Test/Ping.pm
 lib/Test/Ping/Ties/BIND.pm
+lib/Test/Ping/Ties/HIRES.pm
 lib/Test/Ping/Ties/PORT.pm
 lib/Test/Ping/Ties/PROTO.pm
-lib/Test/Ping/Ties/HIRES.pm
 lib/Test/Ping/Ties/SERVICE_CHECK.pm
 lib/Test/Ping/Ties/SOURCE_VERIFY.pm
 lib/Test/Ping/Ties/TIMEOUT.pm
+Makefile.PL
 MANIFEST
+META.yml
 README
 t/00-load.t
 t/01-simple.t
@@ -27,5 +29,8 @@ t/13-service.t
 t/14-ping_icmp.t
 t/15-ping_udp.t
 t/boilerplate.t
+t/critic.t
+t/meta.t
+t/minimumversion.t
 t/pod-coverage.t
 t/pod.t
