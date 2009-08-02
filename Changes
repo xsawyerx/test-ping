@@ -1,5 +1,9 @@
 Revision history for Test-Ping
 
+0.11    02.09.09
+        added author tests using Test::XT (thanks Adam Kennedy)
+        added Makefile.PL and META.yml instead of leaving it to ./Build dist
+
 0.10    02.08.09
         added explicit terms as GPLv2 or later, or artistic
         (thanks Andy Lester, Perlbuzz.com)
