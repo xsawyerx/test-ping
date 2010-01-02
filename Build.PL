@@ -3,6 +3,12 @@ use warnings;
 use Module::Build;
 
 my $builder = Module::Build->new(
+    meta_merge => {
+        resources => {
+            repository => 'http://github.com/xsawyerx/test-ping',
+        },
+    },
+
     module_name         => 'Test::Ping',
     license             => 'perl',
     dist_author         => 'Sawyer X <xsawyerx@cpan.org>',
