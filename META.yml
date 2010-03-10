@@ -1,27 +1,22 @@
 ---
-name: Test-Ping
-version: 0.12
+abstract: 'Testing pings using Net::Ping'
 author:
   - 'Sawyer X <xsawyerx@cpan.org>'
-abstract: Testing pings using Net::Ping
-license: perl
-resources:
-  license: http://dev.perl.org/licenses/
-  repository: http://github.com/xsawyerx/test-ping
 build_requires:
   Test::More: 0
   Test::Timer: 0.05
-requires:
-  Carp: 0
-  Net::Ping: 2.33
-  Test::Builder: 0.86
-  Tie::Scalar: 0
 configure_requires:
-  Module::Build: 0.35
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3601'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Test-Ping
 provides:
   Test::Ping:
     file: lib/Test/Ping.pm
-    version: 0.12
+    version: 0.13
   Test::Ping::Ties::BIND:
     file: lib/Test/Ping/Ties/BIND.pm
     version: 0.01
@@ -43,7 +38,12 @@ provides:
   Test::Ping::Ties::TIMEOUT:
     file: lib/Test/Ping/Ties/TIMEOUT.pm
     version: 0.03
-generated_by: Module::Build version 0.35
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+requires:
+  Carp: 0
+  Net::Ping: 2.33
+  Test::Builder: 0.86
+  Tie::Scalar: 0
+resources:
+  license: http://dev.perl.org/licenses/
+  repository: http://github.com/xsawyerx/test-ping
+version: 0.13
