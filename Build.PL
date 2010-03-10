@@ -24,7 +24,9 @@ my $builder = Module::Build->new(
         'Test::Builder' => 0.86,
     },
     add_to_cleanup      => [ 'Test-Ping-*' ],
-    create_makefile_pl => 'traditional',
+    create_makefile_pl  => 'traditional',
+    create_readme       => 1,
+    create_license      => 1,
 );
 
 $builder->create_build_script();
