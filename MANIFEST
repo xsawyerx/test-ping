@@ -35,3 +35,4 @@ t/meta.t
 t/minimumversion.t
 t/pod-coverage.t
 t/pod.t
+LICENSE
