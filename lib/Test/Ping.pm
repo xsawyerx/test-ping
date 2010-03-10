@@ -14,7 +14,7 @@ use warnings;
 my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
-our $VERSION       = '0.12';
+our $VERSION       = '0.13';
 our @EXPORT        = qw(
     ping_ok
     ping_not_ok
@@ -119,7 +119,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.12
+Version 0.13
 
 =head1 SYNOPSIS
 
@@ -314,7 +314,7 @@ Thanks to everyone who works and contributed to Net::Ping. This module depends s
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2009 Sawyer X, all rights reserved.
+Copyright 2009-2010 Sawyer X, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either:

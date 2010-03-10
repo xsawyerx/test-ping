@@ -1,9 +1,15 @@
 Revision history for Test-Ping
 
-0.12    xx.xx.xx
+0.13    10.02.10
         repository in META.yml using Module::Build (cpanservice)
+        allowng a longer time gap for a test
+        correcting Changelog
 
-0.11    02.09.09
+0.12    13.08.09
+        repository in META.yml using Module::Build (cpanservice)
+        allowng a longer time gap for a test
+
+0.11    02.08.09
         added author tests using Test::XT (thanks Adam Kennedy)
         added Makefile.PL and META.yml instead of leaving it to ./Build dist
 
