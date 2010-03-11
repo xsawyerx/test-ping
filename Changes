@@ -1,5 +1,8 @@
 Revision history for Test-Ping
 
+0.14    11.02.10
+        minor changes to pass tests
+
 0.13    10.02.10
         repository in META.yml using Module::Build (cpanservice)
         allowng a longer time gap for a test
