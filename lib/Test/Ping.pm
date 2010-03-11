@@ -93,7 +93,7 @@ sub create_ping_object_not_ok {
 sub _has_var_ok {
     my ( $var_name, $var_value, $name ) = @_;
     my $tb = $CLASS->builder;
-    $tb->is_eq( $OBJPATH->{$var_name}, $var_value, $name );
+    $tb->is_eq( $OBJPATH->{$var_name}, $var_value, $name ); ## no critic
     return 1;
 }
 
