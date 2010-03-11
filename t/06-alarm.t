@@ -22,10 +22,10 @@ SKIP: {
     eval 'use Test::Timer';
     $EVAL_ERROR                    && skip 'No Test::Timer', 2;
 
-    my $test = sub { Test::Ping->_ping_object()->ping('1.1.1.1') };
+    my $test = sub { Test::Ping->_ping_object()->ping('172.29.249.249') };
 
     $Test::Ping::PROTO = 'tcp';
-    time_between( $test, 1, 10, 'Timeout not enabled' );
+    time_between( $test, 4, 6, 'Timeout not enabled' );
 
     $Test::Ping::TIMEOUT = 2;
     time_atmost( $test, $Test::Ping::TIMEOUT + 1, 'Timeout enabled' );
