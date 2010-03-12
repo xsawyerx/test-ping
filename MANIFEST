@@ -29,7 +29,6 @@ t/12-syn_host.t
 t/13-service.t
 t/14-ping_icmp.t
 t/15-ping_udp.t
-t/boilerplate.t
 t/critic.t
 t/meta.t
 t/minimumversion.t
