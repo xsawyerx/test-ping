@@ -1,5 +1,9 @@
 Revision history for Test-Ping
 
+0.15    12.02.10
+        removed boilerplate test
+        as god is my non-existent witness, i will pass the tests!
+
 0.14    11.02.10
         minor changes to pass tests
 
