@@ -8,7 +8,7 @@ use Test::Ping;
 
 $Test::Ping::TIMEOUT = 5;
 
-my $bad_ip = '1.1.1.1';
+my $bad_ip = '172.29.249.249';
 
 SKIP: {
 
