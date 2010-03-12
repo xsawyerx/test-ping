@@ -2,7 +2,7 @@ NAME
     Test::Ping - Testing pings using Net::Ping
 
 VERSION
-    Version 0.14
+    Version 0.15
 
 SYNOPSIS
     This module helps test pings using Net::Ping

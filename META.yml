@@ -7,7 +7,7 @@ build_requires:
   Test::Timer: 0.05
 configure_requires:
   Module::Build: 0.36
-generated_by: 'Module::Build version 0.3603'
+generated_by: 'Module::Build version 0.3601'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -16,7 +16,7 @@ name: Test-Ping
 provides:
   Test::Ping:
     file: lib/Test/Ping.pm
-    version: 0.14
+    version: 0.15
   Test::Ping::Ties::BIND:
     file: lib/Test/Ping/Ties/BIND.pm
     version: 0.01
@@ -46,4 +46,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/xsawyerx/test-ping
-version: 0.14
+version: 0.15
