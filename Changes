@@ -1,5 +1,8 @@
 Revision history for Test-Ping
 
+0.16    15.02.10
+        requiring environment variable for test that keeps failing
+
 0.15    12.02.10
         removed boilerplate test
         as god is my non-existent witness, i will pass the tests!
