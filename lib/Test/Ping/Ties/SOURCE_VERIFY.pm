@@ -26,7 +26,9 @@ Version 0.01
 
 =head1 DESCRIPTION
 
-In order to allow complete procedural interface to Net::Ping, even though it's an object, I use a Tie::Scalar interface. Every variable is also defined separately to make it cleaner and easier.
+In order to allow complete procedural interface to Net::Ping, even though it's
+an object, I use a Tie::Scalar interface. Every variable is also defined
+separately to make it cleaner and easier.
 
 At some point they might be joined together in a single file, but I doubt it.
 
@@ -38,7 +40,7 @@ None.
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2009 Sawyer X, all rights reserved.
+Copyright 2009-2010 Sawyer X, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.

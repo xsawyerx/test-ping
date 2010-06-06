@@ -1,5 +1,8 @@
 package Test::Ping;
 
+use strict;
+use warnings;
+
 use Test::Ping::Ties::BIND;
 use Test::Ping::Ties::PORT;
 use Test::Ping::Ties::PROTO;
@@ -8,13 +11,10 @@ use Test::Ping::Ties::TIMEOUT;
 use Test::Ping::Ties::SOURCE_VERIFY;
 use Test::Ping::Ties::SERVICE_CHECK;
 
-use strict;
-use warnings;
-
 my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
-our $VERSION       = '0.16';
+our $VERSION       = '0.17';
 our @EXPORT        = qw(
     ping_ok
     ping_not_ok
@@ -119,7 +119,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.16
+Version 0.17
 
 =head1 SYNOPSIS
 
@@ -137,7 +137,10 @@ This module helps test pings using Net::Ping
 
 =head1 DESCRIPTION
 
-Using this module you do not have to work with an object, but can instead use actual procedural testing functions, which is cleaner and more straight forward for testing purposes. This module keeps track of the object for you, starting and closing it and provides a nifty way of testing for pings.
+Using this module you do not have to work with an object, but can instead use
+actual procedural testing functions, which is cleaner and more straight forward
+for testing purposes. This module keeps track of the object for you, starting
+and closing it and provides a nifty way of testing for pings.
 
 =head1 SUBROUTINES/METHODS
 
@@ -153,11 +156,13 @@ Does the exact opposite of ping_ok().
 
 =head2 create_ping_object_ok( @args, $test )
 
-This tries to create a ping object and reports a fail or success. The args that should be sent are whatever args used with Net::Ping.
+This tries to create a ping object and reports a fail or success. The args that
+should be sent are whatever args used with Net::Ping.
 
 =head2 create_ping_object_not_ok( @args, $test )
 
-Tried to create a ping object and attempts to fail. The exactly opposite of the above test.
+Tried to create a ping object and attempts to fail. The exactly opposite of the
+above test.
 
 =head1 EXPORT
 
@@ -171,7 +176,9 @@ create_ping_object_not_ok
 
 =head1 SUPPORTED VARIABLES
 
-Variables in Test::Ping are tied scalars. Some variables change the values in the object hash while others run methods. This follows the behavior of Net::Ping. Below you will find each support variable and what it changes.
+Variables in Test::Ping are tied scalars. Some variables change the values in
+the object hash while others run methods. This follows the behavior of
+Net::Ping. Below you will find each support variable and what it changes.
 
 =head2 BIND
 
@@ -205,7 +212,8 @@ Changes the 'econnrefused' hash value.
 
 =head2 _has_var_ok( $var_name, $var_value, $description )
 
-Gets a variable name to test, what to test against and the name of the test. Runs an actual test using Test::Builder.
+Gets a variable name to test, what to test against and the name of the test.
+Runs an actual test using Test::Builder.
 
 This is used to debug the actual module, if you wanna make sure it works.
 
@@ -226,9 +234,12 @@ This is used to debug the actual module, if you wanna make sure it works.
 
 =head2 _ping_object
 
-When debugging behavior, fetching an internal object from a procedural module can be a bit difficult (especially when it has base inheritance with another one).
+When debugging behavior, fetching an internal object from a procedural module
+can be a bit difficult (especially when it has base inheritance with another
+one).
 
-This method allows you (or me) to fetch the actual Net::Ping object from Test::Ping. It eases testing and assurance.
+This method allows you (or me) to fetch the actual Net::Ping object from
+Test::Ping. It eases testing and assurance.
 
 This is used by the Tie functions to set the variables for the object for you.
 
@@ -252,7 +263,9 @@ And doing it with tests:
     create_ping_object_ok( 'tcp', 2, 'Creating our own Net::Ping object' );
     ping_ok( $target, "Yay! We can reach $target" );
 
-However, you should be warned. I test for a Net::Ping object so trying to pass other objects will fail. If anyone needs this changed or any reason, contact me and I'll consider it.
+However, you should be warned. I test for a Net::Ping object so trying to pass
+other objects will fail. If anyone needs this changed or any reason, contact me
+and I'll consider it.
 
 =head1 DEPENDENCIES
 
@@ -266,10 +279,13 @@ Sawyer X, C<< <xsawyerx at cpan.org> >>
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-test-ping at rt.cpan.org>, or through
-the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping>.
+Please report any bugs or feature requests to C<bug-test-ping at rt.cpan.org>,
+or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping>.
 
-There is also a GitHub issue tracker at L<http://github.com/xsawyerx/test-ping/issues> which I'll probably check just as much.
+There is also a GitHub issue tracker at
+L<http://github.com/xsawyerx/test-ping/issues> which I'll probably check just as
+much.
 
 =head1 SUPPORT
 
@@ -310,7 +326,8 @@ L<http://search.cpan.org/dist/Test-Ping/>
 
 =head1 ACKNOWLEDGEMENTS
 
-Thanks to everyone who works and contributed to Net::Ping. This module depends solely on it.
+Thanks to everyone who works and contributed to Net::Ping. This module depends
+solely on it.
 
 =head1 COPYRIGHT & LICENSE
 
