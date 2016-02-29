@@ -16,6 +16,7 @@ Revision history for Test-Ping
           modules aren't installed (critic.t, meta.t, minimumversion.t and
           pod.t)
         - removed t/minimumversion.t, it wasn't being used anyhow
+        - added configure_requires directive in Build.PL
 
 0.17    06.06.10
         fixing Build.PL executability (turned it off)

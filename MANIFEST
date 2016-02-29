@@ -31,7 +31,6 @@ t/14-ping_icmp.t
 t/15-ping_udp.t
 t/critic.t
 t/meta.t
-t/minimumversion.t
 t/pod-coverage.t
 t/pod.t
 LICENSE
