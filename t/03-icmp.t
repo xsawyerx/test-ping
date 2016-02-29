@@ -11,7 +11,7 @@ use Test::Ping;
 
 use English '-no_match_vars';
 
-sub IsAdminUser {
+sub is_admin_user {
   return unless $OSNAME eq 'MSWin32';
   return unless eval { require Win32 };
   return unless defined &Win32::IsAdminUser;

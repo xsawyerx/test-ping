@@ -6,7 +6,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 11;
+use Test::More;
 use Test::Ping;
 
 SKIP: {
@@ -51,12 +51,9 @@ SKIP: {
     # Test a few remote servers
     # Hopefully they are up when the tests are run.
 
-    ping_ok( 'www.geocities.com',   'www.geocities.com'   );
-    ping_ok( 'ftp.geocities.com',   'ftp.geocities.com'   );
-    ping_ok( 'www.freeservers.com', 'www.freeservers.com' );
-    ping_ok( 'ftp.freeservers.com', 'ftp.freeservers.com' );
-    ping_ok( 'yahoo.com',           'yahoo.com'           );
-    ping_ok( 'www.yahoo.com',       'www.yahoo.com'       );
-    ping_ok( 'www.about.com',       'www.about.com'       );
+    ping_ok( 'facebook.com',   'facebook.com'   );
+    ping_ok( 'google.ca',       'google.ca'     );
+    ping_not_ok( 'blahblah.google.ca', 'blahblah.google.ca' );
 }
 
+done_testing();

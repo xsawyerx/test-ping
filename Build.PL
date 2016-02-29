@@ -20,7 +20,7 @@ my $builder = Module::Build->new(
 
     requires => {
         'Carp'          => 0,
-        'Net::Ping'     => 2.33,
+        'Net::Ping'     => 2.41,
         'Tie::Scalar'   => 0,
         'Test::Builder' => 0.86,
     },
