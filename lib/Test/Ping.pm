@@ -14,7 +14,7 @@ use Test::Ping::Ties::SERVICE_CHECK;
 my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
-our $VERSION       = '0.17';
+our $VERSION       = '0.18';
 our @EXPORT        = qw(
     ping_ok
     ping_not_ok
@@ -198,7 +198,7 @@ Changes the 'port_num' hash value.
 
 =head2 HIRES
 
-Changes the package variable $hires.
+Changes the package variable $hires. By default, it is enabled.
 
 =head2 SOURCE_VERIFY
 

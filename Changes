@@ -1,5 +1,23 @@
 Revision history for Test-Ping
 
+0.18
+        - fixed typo in is_admin_user() definition which was breaking tests
+          on Windows (Undefined subroutine &main::is_admin_user called at
+          t\03-icmp.t line 2)
+        - fixes RT #108683; ftp.geocities.com unavailable broke t/08-ping_tcp.t
+          and added more current/reliable domains to test against
+        - Net::Ping, in v2.40, changed to using HiRes by default, fixed
+          t/09-ping_hires.t to conform to said change. Bumped prereq ver of
+          Net::Ping to 2.41, to ensure future test compatibility
+        - skip test "Failed test 'IP should still be reachable' at
+          t\13-service.t line 133." until the issue can be found/rectified
+          (problem only exists in Windows)
+        - fixed RELEASE_TESTING test files so they simply skip if the required
+          modules aren't installed (critic.t, meta.t, minimumversion.t and
+          pod.t)
+        - removed t/minimumversion.t, it wasn't being used anyhow
+        - added configure_requires directive in Build.PL
+
 0.17    06.06.10
         fixing Build.PL executability (turned it off)
         add examples

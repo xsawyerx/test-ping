@@ -8,7 +8,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 8;
+use Test::More;
 use Test::Ping;
 
 SKIP: {
@@ -33,13 +33,12 @@ SKIP: {
 
     # these are internal package variables of Net::Ping
     # and not hash keys, so they have to be tested this way
-    cmp_ok( $Test::Ping::HIRES, '==', 0, 'Default is not to use Time::HiRes' );
-    $Test::Ping::HIRES = 1;
-    cmp_ok( $Test::Ping::HIRES, '==', 1, 'Enable HIRES' );
+
+    cmp_ok( $Test::Ping::HIRES, '==', 1, 'Default is to use Time::HiRes' );
     $Test::Ping::HIRES = 0;
-    cmp_ok( $Test::Ping::HIRES, '==', 0, 'Make sure disable works' );
+    cmp_ok( $Test::Ping::HIRES, '==', 0, 'Disable HIRES' );
     $Test::Ping::HIRES = 1;
-    cmp_ok( $Test::Ping::HIRES, '==', 1, 'Enable again' );
+    cmp_ok( $Test::Ping::HIRES, '==', 1, 'Make sure re-enable works' );
 
     my ( $ret, $duration ) =
         ping_ok( 'localhost', 'Test on the default port' );
@@ -50,5 +49,6 @@ SKIP: {
     # point if Time::HiRes is functioning properly, except when it
     # is fast enough to be "0", or slow enough to be exactly "1".
     like( $duration, qr/\.|^[01]$/, 'Duration likely has a decimal point' );
-}
+};
 
+done_testing();
