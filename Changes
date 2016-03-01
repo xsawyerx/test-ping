@@ -19,6 +19,9 @@ Revision history for Test-Ping
         - added t/16-ties.t, tests all Ties
         - added t/17-ping_obj_not_ok.t
         - added t/18-ping_obj_ok.t
+        - major updates to MAKEFILE.SKIP
+        - fixed issue in create_ping_object_not_ok(), where it didn't appear
+          that it could possibly do the right thing
 
 0.17    06.06.10
         fixing Build.PL executability (turned it off)
