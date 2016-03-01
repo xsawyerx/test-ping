@@ -28,17 +28,14 @@ SKIP: {
     $Test::Ping::PROTO = 'tcp';
     create_ping_object_ok( 'tcp', 'Create proper Net::Ping object' );
 
-    # xsawyerx: the original test does this
-    # checks that it's disabled, then enabled and disables and enabled again
-
     # these are internal package variables of Net::Ping
     # and not hash keys, so they have to be tested this way
 
-    cmp_ok( $Test::Ping::HIRES, '==', 1, 'Default is to use Time::HiRes' );
+    cmp_ok( $Test::Ping::HIRES, '==', 1, 'Net::Ping uses Time::HiRes by default' );
     $Test::Ping::HIRES = 0;
-    cmp_ok( $Test::Ping::HIRES, '==', 0, 'Disable HIRES' );
+    cmp_ok( $Test::Ping::HIRES, '==', 0, 'Disabling HIRES works' );
     $Test::Ping::HIRES = 1;
-    cmp_ok( $Test::Ping::HIRES, '==', 1, 'Make sure re-enable works' );
+    cmp_ok( $Test::Ping::HIRES, '==', 1, 'Re-enabling HIRES works' );
 
     my ( $ret, $duration ) =
         ping_ok( 'localhost', 'Test on the default port' );
