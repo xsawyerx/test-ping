@@ -17,6 +17,7 @@ Revision history for Test-Ping
           pod.t)
         - removed t/minimumversion.t, it wasn't being used anyhow
         - added configure_requires directive in Build.PL
+        - added t/16-ties.t, tests all Ties
 
 0.17    06.06.10
         fixing Build.PL executability (turned it off)
