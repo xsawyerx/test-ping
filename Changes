@@ -24,7 +24,7 @@ Revision history for Test-Ping
           errors, and test against that)
         - added t/18-ping_obj_ok.t
         - fixed issue in create_ping_object_ok() where the else() statement
-          would never be triggered
+          would never have been triggered
         - test coverage now 100% from 86.16%
 
 0.17    06.06.10
