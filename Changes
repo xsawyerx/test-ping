@@ -20,7 +20,12 @@ Revision history for Test-Ping
         - major updates to MAKEFILE.SKIP
         - added t/17-ping_obj_not_ok.t
         - fixed issue in create_ping_object_not_ok(), where it didn't appear
-          that it could possibly do the right thing
+          that it could possibly do the right thing (needed to trap Net::Ping
+          errors, and test against that)
+        - added t/18-ping_obj_ok.t
+        - fixed issue in create_ping_object_ok() where the else() statement
+          would never be triggered
+        - test coverage now 100% from 86.16%
 
 0.17    06.06.10
         fixing Build.PL executability (turned it off)

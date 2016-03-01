@@ -7,7 +7,5 @@ use_ok( 'Test::Ping');
 
 create_ping_object_not_ok('xxx', "failed ok");
 
-print $@;
-
 done_testing();
 
