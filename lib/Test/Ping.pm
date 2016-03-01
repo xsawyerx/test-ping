@@ -119,7 +119,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.17
+Version 0.18
 
 =head1 SYNOPSIS
 
@@ -148,72 +148,73 @@ and closing it and provides a nifty way of testing for pings.
 
 Checks if a host replies to ping correctly.
 
-This returns the return value and duration, just like Net::Ping's ping() method.
+This returns the return value and duration, just like L<Net::Ping>'s C<ping()>
+method.
 
 =head2 ping_not_ok( $host, $test )
 
-Does the exact opposite of ping_ok().
+Does the exact opposite of C<ping_ok()>.
 
 =head2 create_ping_object_ok( @args, $test )
 
 This tries to create a ping object and reports a fail or success. The args that
-should be sent are whatever args used with Net::Ping.
+should be sent are whatever args used with L<Net::Ping>.
 
 =head2 create_ping_object_not_ok( @args, $test )
 
 Tried to create a ping object and attempts to fail. The exactly opposite of the
-above test.
+C<create_ping_object_not_ok()>
 
 =head1 EXPORT
 
-ping_ok
+C<ping_ok>
 
-ping_not_ok
+C<ping_not_ok>
 
-create_ping_object_ok
+C<create_ping_object_ok>
 
-create_ping_object_not_ok
+C<create_ping_object_not_ok>
 
 =head1 SUPPORTED VARIABLES
 
-Variables in Test::Ping are tied scalars. Some variables change the values in
-the object hash while others run methods. This follows the behavior of
-Net::Ping. Below you will find each support variable and what it changes.
+Variables in L<Test::Ping> are tied scalars. Some variables change the values
+in the object hash while others run methods. This follows the behavior of
+L<Net::Ping>. Below you will find each support variable and what it changes.
 
 =head2 BIND
 
-Runs the 'bind' method.
+Runs the C<bind> method.
 
 =head2 PROTO
 
-Changes the 'proto' hash value.
+Changes the C<proto> hash value.
 
 =head2 TIMEOUT
 
-Changes the 'timeout' hash value.
+Changes the C<timeout> hash value.
 
 =head2 PORT
 
-Changes the 'port_num' hash value.
+Changes the C<port_num> hash value.
 
 =head2 HIRES
 
-Changes the package variable $hires. By default, it is enabled.
+Changes the package variable C<$hires>. By default, it is enabled.
 
 =head2 SOURCE_VERIFY
 
-Changes the package variable $source_verify.
+Changes the package variable C<$source_verify>.
 
 =head2 SERVICE_CHECK
 
-Changes the 'econnrefused' hash value.
+Changes the C<econnrefused> hash value.
 
 =head1 INTERNAL METHODS
 
 =head2 _has_var_ok( $var_name, $var_value, $description )
 
 Gets a variable name to test, what to test against and the name of the test.
-Runs an actual test using Test::Builder.
+Runs an actual test using L<Test::Builder>.
 
 This is used to debug the actual module, if you wanna make sure it works.
 
@@ -238,8 +239,8 @@ When debugging behavior, fetching an internal object from a procedural module
 can be a bit difficult (especially when it has base inheritance with another
 one).
 
-This method allows you (or me) to fetch the actual Net::Ping object from
-Test::Ping. It eases testing and assurance.
+This method allows you (or me) to fetch the actual L<Net::Ping> object from
+C<Test::Ping>. It eases testing and assurance.
 
 This is used by the Tie functions to set the variables for the object for you.
 
@@ -263,15 +264,15 @@ And doing it with tests:
     create_ping_object_ok( 'tcp', 2, 'Creating our own Net::Ping object' );
     ping_ok( $target, "Yay! We can reach $target" );
 
-However, you should be warned. I test for a Net::Ping object so trying to pass
-other objects will fail. If anyone needs this changed or any reason, contact me
-and I'll consider it.
+However, you should be warned. I test for a L<Net::Ping> object so trying to
+pass other objects will fail. If anyone needs this changed or any reason,
+contact me and I'll consider it.
 
 =head1 DEPENDENCIES
 
-This module uses Net::Ping, Tie::Scalar and Carp.
+This module uses L<Net::Ping>, L<Tie::Scalar> and L<Carp>.
 
-Test::Timer is used in the test suite.
+L<Test::Timer> is used in the test suite.
 
 =head1 AUTHOR
 
@@ -326,8 +327,8 @@ L<http://search.cpan.org/dist/Test-Ping/>
 
 =head1 ACKNOWLEDGEMENTS
 
-Thanks to everyone who works and contributed to Net::Ping. This module depends
-solely on it.
+Thanks to everyone who works and contributed to C<Net::Ping>. This module
+depends solely on it.
 
 =head1 COPYRIGHT & LICENSE
 
