@@ -63,6 +63,8 @@ sub ping_not_ok {
     my $pinger = $OBJPATH;
 
     my $alive = $pinger->ping( $host, $TIMEOUT );
+
+    #    is (ref $obj, 'adsf', "$_ is in the right class");
     $tb->ok( !$alive, $name );
 
     return 1;
