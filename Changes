@@ -17,6 +17,10 @@ Revision history for Test-Ping
         - removed t/minimumversion.t, it wasn't being used anyhow
         - added configure_requires directive in Build.PL
         - added t/16-ties.t, tests all Ties
+        - major updates to MAKEFILE.SKIP
+        - added t/17-ping_obj_not_ok.t
+        - fixed issue in create_ping_object_not_ok(), where it didn't appear
+          that it could possibly do the right thing
 
 0.17    06.06.10
         fixing Build.PL executability (turned it off)

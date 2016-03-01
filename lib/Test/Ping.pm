@@ -87,9 +87,9 @@ sub create_ping_object_not_ok {
     my @args = @_;
     my $name = pop @args || q{};
     my $tb   = $CLASS->builder;
-    $OBJPATH = Net::Ping->new(@args);
+    eval { Net::Ping->new(@args); };
 
-    $tb->ok( !$OBJPATH, $name );
+    $tb->ok( $@, $name );
 }
 
 sub _has_var_ok {
