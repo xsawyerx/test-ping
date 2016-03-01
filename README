@@ -4,7 +4,7 @@ NAME
 
 VERSION
 
-    Version 0.17
+    Version 0.18
 
 SYNOPSIS
 
@@ -49,7 +49,7 @@ SUBROUTINES/METHODS
  create_ping_object_not_ok( @args, $test )
 
     Tried to create a ping object and attempts to fail. The exactly
-    opposite of the above test.
+    opposite of the create_ping_object_not_ok()
 
 EXPORT
 
@@ -70,19 +70,19 @@ SUPPORTED VARIABLES
 
  BIND
 
-    Runs the 'bind' method.
+    Runs the bind method.
 
  PROTO
 
-    Changes the 'proto' hash value.
+    Changes the proto hash value.
 
  TIMEOUT
 
-    Changes the 'timeout' hash value.
+    Changes the timeout hash value.
 
  PORT
 
-    Changes the 'port_num' hash value.
+    Changes the port_num hash value.
 
  HIRES
 
@@ -94,7 +94,7 @@ SUPPORTED VARIABLES
 
  SERVICE_CHECK
 
-    Changes the 'econnrefused' hash value.
+    Changes the econnrefused hash value.
 
 INTERNAL METHODS
 

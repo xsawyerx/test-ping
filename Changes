@@ -13,8 +13,7 @@ Revision history for Test-Ping
           t\13-service.t line 133." until the issue can be found/rectified
           (problem only exists in Windows)
         - fixed RELEASE_TESTING test files so they simply skip if the required
-          modules aren't installed (critic.t, meta.t, minimumversion.t and
-          pod.t)
+          modules aren't installed (critic.t, meta.t and pod.t)
         - removed t/minimumversion.t, it wasn't being used anyhow
         - added configure_requires directive in Build.PL
         - added t/16-ties.t, tests all Ties
