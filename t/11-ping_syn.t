@@ -6,7 +6,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 8 * 3 + 4;
+use Test::More;
 use Test::Ping;
 
 use English '-no_match_vars';
@@ -44,13 +44,9 @@ SKIP: {
       '172.29.249.249'       => 0,
 
       # Hopefully all these web ports are open
-      'www.geocities.com.'   => 1,
-      'www.freeservers.com.' => 1,
-      'yahoo.com.'           => 1,
-      'www.yahoo.com.'       => 1,
-      'www.about.com.'       => 1,
-      'www.microsoft.com.'   => 1,
-      '127.0.0.1'            => 1,
+      'facebook.com.'  => 1,
+      'google.ca.'     => 1,
+      'microsoft.com.' => 1,
     );
 
     time_atmost(
@@ -83,7 +79,7 @@ SKIP: {
             sub {
                 ping_ok( $host, "Resolving $host $bad_host" );
             },
-            50,
+            20,
             'Plenty for a DNS lookup',
         );
     }
@@ -104,3 +100,5 @@ SKIP: {
         ok( ! $webs{$host}, "DOWN: http://$host/ [$bad_host]" );
     }
 }
+
+done_testing();
