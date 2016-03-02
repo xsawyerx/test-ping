@@ -74,11 +74,20 @@ sub create_ping_object_ok {
     my @args = @_;
     my $name = pop @args || q{};
     my $tb   = $CLASS->builder;
-    my $OBJPATH;
 
     eval { $OBJPATH = Net::Ping->new(@args); };
 
-    $tb->is_eq( ref $OBJPATH, 'Net::Ping', $name );
+    if (! $@) {
+        $tb->is_eq( ref $OBJPATH, 'Net::Ping', $name );
+    }
+    else {
+        if ($ENV{TEST_PING_CREATE_FAIL}) {
+            warn "eval error" if $ENV{TEST_PING_CREATE_FAIL};
+        }
+        else {
+            $tb->ok( 0, $name );
+        }
+    }
 }
 
 sub create_ping_object_not_ok {
