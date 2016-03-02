@@ -25,7 +25,9 @@ Revision history for Test-Ping
         - added t/18-ping_obj_ok.t
         - fixed issue in create_ping_object_ok() where the else() statement
           would never have been triggered
-        - test coverage now 100% from 86.16%
+        - added t/19-_ping_object.t, made some slight changes to _ping_object()
+          to achieve full test coverage
+        - test coverage now 99.11% up from 86.16%
 
 0.17    06.06.10
         fixing Build.PL executability (turned it off)
