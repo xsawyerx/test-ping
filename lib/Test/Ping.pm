@@ -110,6 +110,7 @@ sub _ping_object {
     my $obj = $_[1] || $_[0] || q{};
 
     if ( ref $obj eq 'Net::Ping' ) {
+        warn "ref is a Net::Ping" if $ENV{TEST_PING_REF_OBJ};
         $OBJPATH = $obj;
     }
 

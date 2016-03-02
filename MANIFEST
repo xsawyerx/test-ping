@@ -33,6 +33,7 @@ t/15-ping_udp.t
 t/16-ties.t
 t/17-ping_obj_not_ok.t
 t/18-ping_obj_ok.t
+t/19-_ping_object.t
 t/critic.t
 t/meta.t
 t/pod-coverage.t
