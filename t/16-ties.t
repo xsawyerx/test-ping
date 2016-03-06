@@ -15,6 +15,16 @@ my @subclasses = qw(
     SERVICE_CHECK
 );
 
+my %subclasses_tests = (
+    # subclass => [ default value, new value ]
+    PORT  => [ 7, 8 ],
+    PROTO => [ 'tcp', 'udp' ],
+    HIRES => [ 1, 3 ],
+    TIMEOUT => [ 5, 10 ],
+    SOURCE_VERIFY => [ 1, 0 ],
+    SERVICE_CHECK => [ undef, 1 ],
+);
+
 my $ping = Net::Ping->new;
 
 for my $subclass (@subclasses) {
@@ -31,50 +41,15 @@ for my $subclass (@subclasses) {
         is ($ret, 1, "$module_name STORE works");
         $obj->FETCH;
         like ($warn, qr/Usage:/, "$module_name FETCH works");
-    }
-    if ($subclass eq 'PORT'){
+    } elsif ( my $data = $subclasses_tests{$subclass} ) {
         my $ret = $obj->FETCH;
-        is ($ret, 7, "$module_name FETCH works");
-        $obj->STORE( 8 );
+        is ($ret, $data->[0], "$module_name FETCH works");
+        $obj->STORE( $data->[1] );
         $ret = $obj->FETCH;
-        is ($ret, 8, "$module_name STORE works");
-    }
-    if ($subclass eq 'PROTO'){
-        my $ret = $obj->FETCH;
-        is ($ret, 'tcp', "$module_name FETCH works");
-        $obj->STORE( 'udp' );
-        $ret = $obj->FETCH;
-        is ($ret, 'udp', "$module_name STORE works");
-    }
-    if ($subclass eq 'HIRES'){
-        my $ret = $obj->FETCH;
-        is ($ret, 1, "$module_name FETCH works");
-        $obj->STORE( 3 );
-        $ret = $obj->FETCH;
-        is ($ret, 3, "$module_name STORE works");
-    }
-    if ($subclass eq 'TIMEOUT'){
-        my $ret = $obj->FETCH;
-        is ($ret, 5, "$module_name FETCH works");
-        $obj->STORE( 10 );
-        $ret = $obj->FETCH;
-        is ($ret, 10, "$module_name STORE works");
-    }
-    if ($subclass eq 'SOURCE_VERIFY'){
-        my $ret = $obj->FETCH;
-        is ($ret, 1, "$module_name FETCH works");
-        $obj->STORE( 0 );
-        $ret = $obj->FETCH;
-        is ($ret, 0, "$module_name STORE works");
-    }
-    if ($subclass eq 'SERVICE_CHECK'){
-        my $ret = $obj->FETCH;
-        is ($ret, undef, "$module_name FETCH works");
-        $obj->STORE( 1 );
-        $ret = $obj->FETCH;
-        is ($ret, 1, "$module_name STORE works");
+        is ($ret, $data->[1], "$module_name STORE works");
+    } else {
+        BAIL_OUT("Odd class called in test (this shouldn't happen): $subclass");
     }
 }
 
 done_testing();
-
