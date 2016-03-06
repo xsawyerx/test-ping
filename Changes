@@ -13,13 +13,19 @@ Revision history for Test-Ping
           t\13-service.t line 133." until the issue can be found/rectified
           (problem only exists in Windows)
         - fixed RELEASE_TESTING test files so they simply skip if the required
-          modules aren't installed (critic.t, meta.t, minimumversion.t and
-          pod.t)
+          modules aren't installed (critic.t, meta.t and pod.t)
         - removed t/minimumversion.t, it wasn't being used anyhow
         - added configure_requires directive in Build.PL
         - added t/16-ties.t, tests all Ties
         - added t/17-ping_obj_not_ok.t
         - added t/18-ping_obj_ok.t
+        - major updates to MAKEFILE.SKIP
+        - fixed issue in create_ping_object_not_ok(), where it didn't appear
+          that it could possibly do the right thing
+        - added t/18-ping_obj_ok.t
+        - fixed issue in create_ping_object_ok() where the else() statement
+          would never have been triggered
+        - test coverage now 96.6% from 86.16%
 
 0.17    06.06.10
         fixing Build.PL executability (turned it off)
