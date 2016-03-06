@@ -73,9 +73,9 @@ sub create_ping_object_ok {
     my $name = pop @args || q{};
     my $tb   = $CLASS->builder;
 
-    eval { $OBJPATH = Net::Ping->new(@args); };
+    my $success = eval { $OBJPATH = Net::Ping->new(@args); 1; };
 
-    $tb->is_eq( ref $OBJPATH, 'Net::Ping', $name );
+    $tb->ok( $success && ref $OBJPATH eq 'Net::Ping', $name );
 }
 
 sub create_ping_object_not_ok {
