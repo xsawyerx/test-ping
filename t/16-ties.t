@@ -5,73 +5,74 @@ use Test::More;
 
 use_ok( 'Test::Ping');
 
-my @modules = qw(
-    Test::Ping::Ties::BIND
-    Test::Ping::Ties::PORT
-    Test::Ping::Ties::PROTO
-    Test::Ping::Ties::HIRES
-    Test::Ping::Ties::TIMEOUT
-    Test::Ping::Ties::SOURCE_VERIFY
-    Test::Ping::Ties::SERVICE_CHECK
+my @subclasses = qw(
+    BIND
+    PORT
+    PROTO
+    HIRES
+    TIMEOUT
+    SOURCE_VERIFY
+    SERVICE_CHECK
 );
 
 my $ping = Net::Ping->new;
 
-for (@modules) {
-    use_ok( $_ );
+for my $subclass (@subclasses) {
+    my $module_name = "Test::Ping::Ties::$subclass";
+    use_ok( $module_name );
 
-    my $obj = $_->TIESCALAR;
-    isa_ok( $obj, $_, "object " );
+    my $obj = $module_name->TIESCALAR;
+    isa_ok( $obj, $module_name, 'TIESCALAR object' );
 
-    if ($_ =~ /BIND/){
+    if ($subclass eq 'BIND'){
         my $warn;
         local $SIG{__WARN__} = sub { $warn = shift; };
         my $ret = $obj->STORE( 'localhost' );
-        is ($ret, 1, "$_ STORE works");
+        is ($ret, 1, "$module_name STORE works");
         $obj->FETCH;
-        like ($warn, qr/Usage:/, "$_ FETCH works");
+        like ($warn, qr/Usage:/, "$module_name FETCH works");
     }
-    if ($_ =~ /PORT/){
+    if ($subclass eq 'PORT'){
         my $ret = $obj->FETCH;
-        is ($ret, 7, "$_ FETCH works");
+        is ($ret, 7, "$module_name FETCH works");
         $obj->STORE( 8 );
         $ret = $obj->FETCH;
-        is ($ret, 8, "$_ STORE works");
+        is ($ret, 8, "$module_name STORE works");
     }
-     if ($_ =~ /PROTO/){
+    if ($subclass eq 'PROTO'){
         my $ret = $obj->FETCH;
-        is ($ret, 'tcp', "$_ FETCH works");
+        is ($ret, 'tcp', "$module_name FETCH works");
         $obj->STORE( 'udp' );
         $ret = $obj->FETCH;
-        is ($ret, 'udp', "$_ STORE works");
+        is ($ret, 'udp', "$module_name STORE works");
     }
-    if ($_ =~ /HIRES/){
+    if ($subclass eq 'HIRES'){
         my $ret = $obj->FETCH;
-        is ($ret, 1, "$_ FETCH works");
+        is ($ret, 1, "$module_name FETCH works");
         $obj->STORE( 3 );
         $ret = $obj->FETCH;
-        is ($ret, 3, "$_ STORE works");
+        is ($ret, 3, "$module_name STORE works");
     }
-    if ($_ =~ /TIMEOUT/){
+    if ($subclass eq 'TIMEOUT'){
         my $ret = $obj->FETCH;
-        is ($ret, 5, "$_ FETCH works");
+        is ($ret, 5, "$module_name FETCH works");
         $obj->STORE( 10 );
         $ret = $obj->FETCH;
-        is ($ret, 10, "$_ STORE works");
+        is ($ret, 10, "$module_name STORE works");
     }
-     if ($_ =~ /SOURCE_VERIFY/){
+    if ($subclass eq 'SOURCE_VERIFY'){
         my $ret = $obj->FETCH;
-        is ($ret, 1, "$_ FETCH works");
+        is ($ret, 1, "$module_name FETCH works");
         $obj->STORE( 0 );
         $ret = $obj->FETCH;
-        is ($ret, 0, "$_ STORE works");
+        is ($ret, 0, "$module_name STORE works");
     }
-      if ($_ =~ /SERVICE_CHECK/){
+    if ($subclass eq 'SERVICE_CHECK'){
         my $ret = $obj->FETCH;
-        is ($ret, undef, "$_ FETCH works");
+        is ($ret, undef, "$module_name FETCH works");
         $obj->STORE( 1 );
         $ret = $obj->FETCH;
-        is ($ret, 1, "$_ STORE works");
+        is ($ret, 1, "$module_name STORE works");
     }
 }
 
