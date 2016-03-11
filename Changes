@@ -17,17 +17,15 @@ Revision history for Test-Ping
         - removed t/minimumversion.t, it wasn't being used anyhow
         - added configure_requires directive in Build.PL
         - added t/16-ties.t, tests all Ties
-        - major updates to MAKEFILE.SKIP
         - added t/17-ping_obj_not_ok.t
+        - added t/18-ping_obj_ok.t
+        - major updates to MAKEFILE.SKIP
         - fixed issue in create_ping_object_not_ok(), where it didn't appear
-          that it could possibly do the right thing (needed to trap Net::Ping
-          errors, and test against that)
+          that it could possibly do the right thing
         - added t/18-ping_obj_ok.t
         - fixed issue in create_ping_object_ok() where the else() statement
           would never have been triggered
-        - added t/19-_ping_object.t, made some slight changes to _ping_object()
-          to achieve full test coverage
-        - test coverage now 99.11% up from 86.16%
+        - test coverage now 96.6% from 86.16%
 
 0.17    06.06.10
         fixing Build.PL executability (turned it off)

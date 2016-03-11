@@ -44,10 +44,9 @@ SKIP: {
       '172.29.249.249'       => 0,
 
       # Hopefully all these web ports are open
-      'facebook.com.'   => 1,
-      'google.ca.' => 1,
-      'microsoft.com.'   => 1,
-      '127.0.0.1'            => 1,
+      'facebook.com.'  => 1,
+      'google.ca.'     => 1,
+      'microsoft.com.' => 1,
     );
 
     time_atmost(

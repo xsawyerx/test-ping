@@ -63,8 +63,6 @@ sub ping_not_ok {
     my $pinger = $OBJPATH;
 
     my $alive = $pinger->ping( $host, $TIMEOUT );
-
-    #    is (ref $obj, 'adsf', "$_ is in the right class");
     $tb->ok( !$alive, $name );
 
     return 1;
@@ -74,29 +72,22 @@ sub create_ping_object_ok {
     my @args = @_;
     my $name = pop @args || q{};
     my $tb   = $CLASS->builder;
+    $OBJPATH = Net::Ping->new(@args);
 
-    eval { $OBJPATH = Net::Ping->new(@args); };
+    my $success = eval { $OBJPATH = Net::Ping->new(@args); 1; };
 
-    if (! $@) {
-        $tb->is_eq( ref $OBJPATH, 'Net::Ping', $name );
-    }
-    else {
-        if ($ENV{TEST_PING_CREATE_FAIL}) {
-            warn "eval error" if $ENV{TEST_PING_CREATE_FAIL};
-        }
-        else {
-            $tb->ok( 0, $name );
-        }
-    }
+    $tb->ok( $success && ref $OBJPATH eq 'Net::Ping', $name );
 }
 
 sub create_ping_object_not_ok {
     my @args = @_;
     my $name = pop @args || q{};
     my $tb   = $CLASS->builder;
-    eval { Net::Ping->new(@args); };
+    my $error;
+    eval { Net::Ping->new(@args); 1; }
+    or $error = $@;
 
-    $tb->ok( $@, $name );
+    $tb->ok( $error, $name );
 }
 
 sub _has_var_ok {
@@ -110,7 +101,6 @@ sub _ping_object {
     my $obj = $_[1] || $_[0] || q{};
 
     if ( ref $obj eq 'Net::Ping' ) {
-        warn "ref is a Net::Ping" if $ENV{TEST_PING_REF_OBJ};
         $OBJPATH = $obj;
     }
 
