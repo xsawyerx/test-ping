@@ -1,5 +1,11 @@
 Revision history for Test-Ping
 
+0.202   13.03.16
+        - Previous release had no Changes entry. Bah.
+
+0.201   13.03.16
+        - Dzilify.
+
 0.200   13.03.16
         - fixed typo in is_admin_user() definition which was breaking tests
           on Windows (Undefined subroutine &main::is_admin_user called at
