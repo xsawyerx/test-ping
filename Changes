@@ -1,6 +1,6 @@
 Revision history for Test-Ping
 
-0.18
+0.18    13.03.16
         - fixed typo in is_admin_user() definition which was breaking tests
           on Windows (Undefined subroutine &main::is_admin_user called at
           t\03-icmp.t line 2)
@@ -9,6 +9,10 @@ Revision history for Test-Ping
         - Net::Ping, in v2.40, changed to using HiRes by default, fixed
           t/09-ping_hires.t to conform to said change. Bumped prereq ver of
           Net::Ping to 2.41, to ensure future test compatibility
+        - fixed issue in create_ping_object_not_ok(), where it didn't appear
+          that it could possibly do the right thing
+        - fixed issue in create_ping_object_ok() where the else() statement
+          would never have been triggered
         - skip test "Failed test 'IP should still be reachable' at
           t\13-service.t line 133." until the issue can be found/rectified
           (problem only exists in Windows)
@@ -20,11 +24,7 @@ Revision history for Test-Ping
         - added t/17-ping_obj_not_ok.t
         - added t/18-ping_obj_ok.t
         - major updates to MAKEFILE.SKIP
-        - fixed issue in create_ping_object_not_ok(), where it didn't appear
-          that it could possibly do the right thing
         - added t/18-ping_obj_ok.t
-        - fixed issue in create_ping_object_ok() where the else() statement
-          would never have been triggered
         - test coverage now 96.6% from 86.16%
 
 0.17    06.06.10
