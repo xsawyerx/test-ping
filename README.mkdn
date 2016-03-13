@@ -1,0 +1,214 @@
+# SYNOPSIS
+
+This module helps test pings using Net::Ping
+
+    use Test::More tests => 2;
+    use Test::Ping;
+
+    my $good_host = '127.0.0.1';
+    my $bad_host  = '1.1.1.1;
+
+    ping_ok(     $good_host, "able to ping $good_host" );
+    ping_not_ok( $bad_host,  "can't ping $bad_host"    );
+    ...
+
+# DESCRIPTION
+
+Using this module you do not have to work with an object, but can instead use
+actual procedural testing functions, which is cleaner and more straight forward
+for testing purposes. This module keeps track of the object for you, starting
+and closing it and provides a nifty way of testing for pings.
+
+# SUBROUTINES/METHODS
+
+## ping\_ok( $host, $test )
+
+Checks if a host replies to ping correctly.
+
+This returns the return value and duration, just like [Net::Ping](https://metacpan.org/pod/Net::Ping)'s `ping()`
+method.
+
+## ping\_not\_ok( $host, $test )
+
+Does the exact opposite of `ping_ok()`.
+
+## create\_ping\_object\_ok( @args, $test )
+
+This tries to create a ping object and reports a fail or success. The args that
+should be sent are whatever args used with [Net::Ping](https://metacpan.org/pod/Net::Ping).
+
+## create\_ping\_object\_not\_ok( @args, $test )
+
+Tried to create a ping object and attempts to fail. The exactly opposite of the
+`create_ping_object_not_ok()`
+
+# EXPORT
+
+`ping_ok`
+
+`ping_not_ok`
+
+`create_ping_object_ok`
+
+`create_ping_object_not_ok`
+
+# SUPPORTED VARIABLES
+
+Variables in [Test::Ping](https://metacpan.org/pod/Test::Ping) are tied scalars. Some variables change the values
+in the object hash while others run methods. This follows the behavior of
+[Net::Ping](https://metacpan.org/pod/Net::Ping). Below you will find each support variable and what it changes.
+
+## BIND
+
+Runs the `bind` method.
+
+## PROTO
+
+Changes the `proto` hash value.
+
+## TIMEOUT
+
+Changes the `timeout` hash value.
+
+## PORT
+
+Changes the `port_num` hash value.
+
+## HIRES
+
+Changes the package variable `$hires`. By default, it is enabled.
+
+## SOURCE\_VERIFY
+
+Changes the package variable `$source_verify`.
+
+## SERVICE\_CHECK
+
+Changes the `econnrefused` hash value.
+
+# INTERNAL METHODS
+
+## \_has\_var\_ok( $var\_name, $var\_value, $description )
+
+Gets a variable name to test, what to test against and the name of the test.
+Runs an actual test using [Test::Builder](https://metacpan.org/pod/Test::Builder).
+
+This is used to debug the actual module, if you wanna make sure it works.
+
+    use Test::More tests => 1;
+    use Test::Ping;
+
+    # Test::Ping calls the protocol variable 'PROTO',
+    # but Net::Ping calls it internally (in the hash) 'proto'
+    # (this is documented above under PROTO)
+    # this is checking against Net::Ping specifically
+
+    $Test::Ping::PROTO = 'icmp';
+    Test::Ping::_has_var_ok(
+        'proto',
+        'icmp',
+        'Net::Ping has correct protocol variable',
+    );
+
+## \_ping\_object
+
+When debugging behavior, fetching an internal object from a procedural module
+can be a bit difficult (especially when it has base inheritance with another
+one).
+
+This method allows you (or me) to fetch the actual [Net::Ping](https://metacpan.org/pod/Net::Ping) object from
+`Test::Ping`. It eases testing and assurance.
+
+This is used by the Tie functions to set the variables for the object for you.
+
+    use Test::Ping;
+    use Data::Dumper;
+
+    print 'Object internals: ' . Dumper( Test::Ping->_ping_object() );
+
+Or you could also change the Net::Ping object to one of your own:
+
+    use Test::Ping;
+    use Net::Ping;
+
+    Test::Ping->_ping_object( Net::Ping->new(@opts) );
+
+And doing it with tests:
+
+    use Test::More tests => 2;
+    use Test::Ping;
+
+    create_ping_object_ok( 'tcp', 2, 'Creating our own Net::Ping object' );
+    ping_ok( $target, "Yay! We can reach $target" );
+
+However, you should be warned. I test for a [Net::Ping](https://metacpan.org/pod/Net::Ping) object so trying to
+pass other objects will fail. If anyone needs this changed or any reason,
+contact me and I'll consider it.
+
+# DEPENDENCIES
+
+This module uses [Net::Ping](https://metacpan.org/pod/Net::Ping), [Tie::Scalar](https://metacpan.org/pod/Tie::Scalar) and [Carp](https://metacpan.org/pod/Carp).
+
+[Test::Timer](https://metacpan.org/pod/Test::Timer) is used in the test suite.
+
+# BUGS
+
+Please report any bugs or feature requests to `bug-test-ping at rt.cpan.org`,
+or through the web interface at
+[http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping).
+
+There is also a GitHub issue tracker at
+[http://github.com/xsawyerx/test-ping/issues](http://github.com/xsawyerx/test-ping/issues) which I'll probably check just as
+much.
+
+# SUPPORT
+
+You can find documentation for this module with the perldoc command.
+
+    perldoc Test::Ping
+
+If you have Git, this is the clone path:
+
+git@github.com:xsawyerx/test-ping.git
+
+You can also look for information at:
+
+- GitHub Website:
+
+    [http://github.com/xsawyerx/test-ping/tree/master](http://github.com/xsawyerx/test-ping/tree/master)
+
+- RT: CPAN's request tracker
+
+    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Ping](http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Ping)
+
+- AnnoCPAN: Annotated CPAN documentation
+
+    [http://annocpan.org/dist/Test-Ping](http://annocpan.org/dist/Test-Ping)
+
+- CPAN Ratings
+
+    [http://cpanratings.perl.org/d/Test-Ping](http://cpanratings.perl.org/d/Test-Ping)
+
+- Search CPAN
+
+    [http://search.cpan.org/dist/Test-Ping/](http://search.cpan.org/dist/Test-Ping/)
+
+# ACKNOWLEDGEMENTS
+
+Steve Bertrand (STEVEB) provided many fixes and improvements. Big thank
+you for all the work done.
+
+Thanks to everyone who works and contributed to `Net::Ping`. This module
+depends solely on it.
+
+# COPYRIGHT & LICENSE
+
+Copyright 2009-2010 Sawyer X, all rights reserved.
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of either:
+
+- the GNU General Public License as published by the Free
+Software Foundation; either version 2, or (at your option) any
+later version, or
+- the Artistic License version 2.0.
