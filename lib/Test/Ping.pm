@@ -1,4 +1,5 @@
 package Test::Ping;
+# ABSTRACT: Testing pings using Net::Ping
 
 use strict;
 use warnings;
@@ -14,7 +15,6 @@ use Test::Ping::Ties::SERVICE_CHECK;
 my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
-our $VERSION       = '0.200';
 our @EXPORT        = qw(
     ping_ok
     ping_not_ok
@@ -111,14 +111,6 @@ END { $OBJPATH->close(); }
 1;
 
 __END__
-
-=head1 NAME
-
-Test::Ping - Testing pings using Net::Ping
-
-=head1 VERSION
-
-Version 0.200
 
 =head1 SYNOPSIS
 
@@ -272,10 +264,6 @@ contact me and I'll consider it.
 This module uses L<Net::Ping>, L<Tie::Scalar> and L<Carp>.
 
 L<Test::Timer> is used in the test suite.
-
-=head1 AUTHOR
-
-Sawyer X, C<< <xsawyerx at cpan.org> >>
 
 =head1 BUGS
 
