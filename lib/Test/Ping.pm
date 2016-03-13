@@ -267,49 +267,8 @@ L<Test::Timer> is used in the test suite.
 
 =head1 BUGS
 
-Please report any bugs or feature requests to C<bug-test-ping at rt.cpan.org>,
-or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping>.
-
-There is also a GitHub issue tracker at
-L<http://github.com/xsawyerx/test-ping/issues> which I'll probably check just as
-much.
-
-=head1 SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Test::Ping
-
-If you have Git, this is the clone path:
-
-git@github.com:xsawyerx/test-ping.git
-
-You can also look for information at:
-
-=over 4
-
-=item * GitHub Website:
-
-L<http://github.com/xsawyerx/test-ping/tree/master>
-
-=item * RT: CPAN's request tracker
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Ping>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/Test-Ping>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/Test-Ping>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/Test-Ping/>
-
-=back
+Please report any bugs or feature requests on the a GitHub issue tracker at
+L<http://github.com/xsawyerx/test-ping/issues>.
 
 =head1 ACKNOWLEDGEMENTS
 
@@ -318,21 +277,3 @@ you for all the work done.
 
 Thanks to everyone who works and contributed to C<Net::Ping>. This module
 depends solely on it.
-
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2009-2010 Sawyer X, all rights reserved.
-
-This program is free software; you can redistribute it and/or modify it
-under the terms of either:
-
-=over 4
-
-=item * the GNU General Public License as published by the Free
-Software Foundation; either version 2, or (at your option) any
-later version, or
-
-=item * the Artistic License version 2.0.
-
-=back
-

@@ -1,12 +1,11 @@
 package Test::Ping::Ties::SOURCE_VERIFY;
+# ABSTRACT: Source Verify Tie variable to Test::Ping
 
 use strict;
 use warnings;
 
 use Net::Ping;
 use Tie::Scalar;
-
-our $VERSION = '0.01';
 
 sub TIESCALAR { return bless {}, shift;            }
 sub FETCH     { return $Net::Ping::source_verify;  }
@@ -15,14 +14,6 @@ sub STORE     { $Net::Ping::source_verify = $_[1]; }
 1;
 
 __END__
-
-=head1 NAME
-
-Test::Ping::Ties::SOURCE_VERIFY - Source Verify Tie variable to Test::Ping
-
-=head1 VERSION
-
-Version 0.01
 
 =head1 DESCRIPTION
 
@@ -37,11 +28,3 @@ Please refrain from using this directly.
 =head1 EXPORT
 
 None.
-
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2009-2010 Sawyer X, all rights reserved.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
-

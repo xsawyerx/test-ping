@@ -1,12 +1,11 @@
 package Test::Ping::Ties::TIMEOUT;
+# ABSTRACT: Timeout Tie variable to Test::Ping
 
 use strict;
 use warnings;
 
 use Net::Ping;
 use Tie::Scalar;
-
-our $VERSION = '0.03';
 
 sub TIESCALAR { return bless {}, shift;                          }
 sub FETCH     { return Test::Ping->_ping_object()->{'timeout'};  }
@@ -15,14 +14,6 @@ sub STORE     { Test::Ping->_ping_object()->{'timeout'} = $_[1]; }
 1;
 
 __END__
-
-=head1 NAME
-
-Test::Ping::Ties::TIMEOUT - Timeout Tie variable to Test::Ping
-
-=head1 VERSION
-
-Version 0.03
 
 =head1 DESCRIPTION
 
@@ -37,11 +28,3 @@ Please refrain from using this directly.
 =head1 EXPORT
 
 None.
-
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2009-2010 Sawyer X, all rights reserved.
-
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
-

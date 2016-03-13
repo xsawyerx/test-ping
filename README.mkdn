@@ -1,3 +1,11 @@
+# NAME
+
+Test::Ping - Testing pings using Net::Ping
+
+# VERSION
+
+version 0.203
+
 # SYNOPSIS
 
 This module helps test pings using Net::Ping
@@ -153,45 +161,8 @@ This module uses [Net::Ping](https://metacpan.org/pod/Net::Ping), [Tie::Scalar](
 
 # BUGS
 
-Please report any bugs or feature requests to `bug-test-ping at rt.cpan.org`,
-or through the web interface at
-[http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Test-Ping).
-
-There is also a GitHub issue tracker at
-[http://github.com/xsawyerx/test-ping/issues](http://github.com/xsawyerx/test-ping/issues) which I'll probably check just as
-much.
-
-# SUPPORT
-
-You can find documentation for this module with the perldoc command.
-
-    perldoc Test::Ping
-
-If you have Git, this is the clone path:
-
-git@github.com:xsawyerx/test-ping.git
-
-You can also look for information at:
-
-- GitHub Website:
-
-    [http://github.com/xsawyerx/test-ping/tree/master](http://github.com/xsawyerx/test-ping/tree/master)
-
-- RT: CPAN's request tracker
-
-    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Ping](http://rt.cpan.org/NoAuth/Bugs.html?Dist=Test-Ping)
-
-- AnnoCPAN: Annotated CPAN documentation
-
-    [http://annocpan.org/dist/Test-Ping](http://annocpan.org/dist/Test-Ping)
-
-- CPAN Ratings
-
-    [http://cpanratings.perl.org/d/Test-Ping](http://cpanratings.perl.org/d/Test-Ping)
-
-- Search CPAN
-
-    [http://search.cpan.org/dist/Test-Ping/](http://search.cpan.org/dist/Test-Ping/)
+Please report any bugs or feature requests on the a GitHub issue tracker at
+[http://github.com/xsawyerx/test-ping/issues](http://github.com/xsawyerx/test-ping/issues).
 
 # ACKNOWLEDGEMENTS
 
@@ -201,14 +172,14 @@ you for all the work done.
 Thanks to everyone who works and contributed to `Net::Ping`. This module
 depends solely on it.
 
-# COPYRIGHT & LICENSE
+# AUTHOR
 
-Copyright 2009-2010 Sawyer X, all rights reserved.
+Sawyer X
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either:
+# COPYRIGHT AND LICENSE
 
-- the GNU General Public License as published by the Free
-Software Foundation; either version 2, or (at your option) any
-later version, or
-- the Artistic License version 2.0.
+This software is Copyright (c) 2016 by Sawyer X.
+
+This is free software, licensed under:
+
+    The MIT (X11) License

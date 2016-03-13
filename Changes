@@ -1,5 +1,9 @@
 Revision history for Test-Ping
 
+0.203   13.03.16
+        - Ugh. $VERSION wasn't added and the indexing failed.
+        - Fix the LICENSING.
+
 0.202   13.03.16
         - Previous release had no Changes entry. Bah.
 
