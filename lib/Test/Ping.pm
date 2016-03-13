@@ -14,7 +14,7 @@ use Test::Ping::Ties::SERVICE_CHECK;
 my  $CLASS         = __PACKAGE__;
 my  $OBJPATH       = __PACKAGE__->builder->{'_net-ping_object'};
 my  $method_ignore = '__NONE';
-our $VERSION       = '0.18';
+our $VERSION       = '0.200';
 our @EXPORT        = qw(
     ping_ok
     ping_not_ok
@@ -118,7 +118,7 @@ Test::Ping - Testing pings using Net::Ping
 
 =head1 VERSION
 
-Version 0.18
+Version 0.200
 
 =head1 SYNOPSIS
 

@@ -1,6 +1,6 @@
 Revision history for Test-Ping
 
-0.18    13.03.16
+0.200   13.03.16
         - fixed typo in is_admin_user() definition which was breaking tests
           on Windows (Undefined subroutine &main::is_admin_user called at
           t\03-icmp.t line 2)
