@@ -1,8 +1,7 @@
-package Test::Ping::Ties::PORT;
-# ABSTRACT: Port Tie variable to Test::Ping
-
 use strict;
 use warnings;
+package Test::Ping::Ties::PORT;
+# ABSTRACT: Port Tie variable to Test::Ping
 
 use Net::Ping;
 use Tie::Scalar;
