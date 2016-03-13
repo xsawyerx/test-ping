@@ -323,8 +323,10 @@ L<http://search.cpan.org/dist/Test-Ping/>
 
 =back
 
-
 =head1 ACKNOWLEDGEMENTS
+
+Steve Bertrand (STEVEB) provided many fixes and improvements. Big thank
+you for all the work done.
 
 Thanks to everyone who works and contributed to C<Net::Ping>. This module
 depends solely on it.
