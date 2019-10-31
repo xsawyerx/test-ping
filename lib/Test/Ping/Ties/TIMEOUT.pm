@@ -1,6 +1,6 @@
+package Test::Ping::Ties::TIMEOUT;
 use strict;
 use warnings;
-package Test::Ping::Ties::TIMEOUT;
 # ABSTRACT: Timeout Tie variable to Test::Ping
 
 use Net::Ping;
