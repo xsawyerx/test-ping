@@ -1,6 +1,6 @@
+package Test::Ping::Ties::SERVICE_CHECK;
 use strict;
 use warnings;
-package Test::Ping::Ties::SERVICE_CHECK;
 # ABSTRACT: Service Check Tie variable to Test::Ping
 
 use Net::Ping;

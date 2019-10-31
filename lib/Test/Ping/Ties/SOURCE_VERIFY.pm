@@ -1,6 +1,6 @@
+package Test::Ping::Ties::SOURCE_VERIFY;
 use strict;
 use warnings;
-package Test::Ping::Ties::SOURCE_VERIFY;
 # ABSTRACT: Source Verify Tie variable to Test::Ping
 
 use Net::Ping;

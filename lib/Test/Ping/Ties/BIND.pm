@@ -1,6 +1,6 @@
+package Test::Ping::Ties::BIND;
 use strict;
 use warnings;
-package Test::Ping::Ties::BIND;
 # ABSTRACT: Bind Tie variable to Test::Ping
 
 use Net::Ping;

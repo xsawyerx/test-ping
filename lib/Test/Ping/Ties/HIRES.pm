@@ -1,6 +1,6 @@
+package Test::Ping::Ties::HIRES;
 use strict;
 use warnings;
-package Test::Ping::Ties::HIRES;
 # ABSTRACT: HiRes Tie variable to Test::Ping
 
 use Net::Ping;
