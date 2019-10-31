@@ -31,7 +31,7 @@ our $SOURCE_VERIFY;
 our $SERVICE_CHECK;
 
 BEGIN {
-    use base 'Test::Builder::Module';
+    use parent 'Test::Builder::Module';
     use Net::Ping;
 
     __PACKAGE__->builder->{'_net-ping_object'} = Net::Ping->new($PROTO);
