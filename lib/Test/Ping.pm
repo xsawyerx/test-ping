@@ -36,6 +36,7 @@ BEGIN {
 
     __PACKAGE__->builder->{'_net-ping_object'} = Net::Ping->new($PROTO);
 
+    ## no critic qw(Miscellanea::ProhibitTies)
     tie $PORT,          'Test::Ping::Ties::PORT';
     tie $BIND,          'Test::Ping::Ties::BIND';
     tie $PROTO,         'Test::Ping::Ties::PROTO';
@@ -88,14 +89,14 @@ sub create_ping_object_not_ok {
     $tb->ok( $error, $name );
 }
 
-sub _has_var_ok {
+sub _has_var_ok { ## no critic qw( Subroutines::ProhibitUnusedPrivateSubroutines )
     my ( $var_name, $var_value, $name ) = @_;
     my $tb = $CLASS->builder;
-    $tb->is_eq( $OBJPATH->{$var_name}, $var_value, $name ); ## no critic
+    $tb->is_eq( $OBJPATH->{$var_name}, $var_value, $name );
     return 1;
 }
 
-sub _ping_object {
+sub _ping_object { ## no critic qw( Subroutines::ProhibitUnusedPrivateSubroutines Subroutines::RequireArgUnpacking )
     my $obj = $_[1] || $_[0] || q{};
 
     if ( ref $obj eq 'Net::Ping' ) {
