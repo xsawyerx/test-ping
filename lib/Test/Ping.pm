@@ -1,6 +1,6 @@
+package Test::Ping;
 use strict;
 use warnings;
-package Test::Ping;
 # ABSTRACT: Testing pings using Net::Ping
 
 use Test::Ping::Ties::BIND;
