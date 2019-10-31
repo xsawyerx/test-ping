@@ -4,6 +4,7 @@ use warnings;
 # ABSTRACT: Service Check Tie variable to Test::Ping
 
 use Net::Ping;
+use Test::Ping;
 use Tie::Scalar;
 
 sub TIESCALAR { return bless {}, shift;                               }

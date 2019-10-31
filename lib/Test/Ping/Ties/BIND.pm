@@ -4,6 +4,7 @@ use warnings;
 # ABSTRACT: Bind Tie variable to Test::Ping
 
 use Net::Ping;
+use Test::Ping;
 use Tie::Scalar;
 use Carp;
 
