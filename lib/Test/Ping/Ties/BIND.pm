@@ -1,7 +1,8 @@
 package Test::Ping::Ties::BIND;
+# ABSTRACT: Bind Tie variable to Test::Ping
+
 use strict;
 use warnings;
-# ABSTRACT: Bind Tie variable to Test::Ping
 
 use Net::Ping;
 use Test::Ping;

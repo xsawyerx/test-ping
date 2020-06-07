@@ -1,7 +1,8 @@
 package Test::Ping;
+# ABSTRACT: Testing pings using Net::Ping
+
 use strict;
 use warnings;
-# ABSTRACT: Testing pings using Net::Ping
 
 use Test::Ping::Ties::BIND;
 use Test::Ping::Ties::PORT;

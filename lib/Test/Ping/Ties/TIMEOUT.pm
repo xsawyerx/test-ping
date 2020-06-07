@@ -1,7 +1,8 @@
 package Test::Ping::Ties::TIMEOUT;
+# ABSTRACT: Timeout Tie variable to Test::Ping
+
 use strict;
 use warnings;
-# ABSTRACT: Timeout Tie variable to Test::Ping
 
 use Net::Ping;
 use Test::Ping;

@@ -4,7 +4,7 @@ Test::Ping - Testing pings using Net::Ping
 
 # VERSION
 
-version 0.204
+version 0.210
 
 # SYNOPSIS
 
@@ -33,7 +33,7 @@ and closing it and provides a nifty way of testing for pings.
 
 Checks if a host replies to ping correctly.
 
-This returns the return value and duration, just like [Net::Ping](https://metacpan.org/pod/Net::Ping)'s `ping()`
+This returns the return value and duration, just like [Net::Ping](https://metacpan.org/pod/Net%3A%3APing)'s `ping()`
 method.
 
 ## ping\_not\_ok( $host, $test )
@@ -43,7 +43,7 @@ Does the exact opposite of `ping_ok()`.
 ## create\_ping\_object\_ok( @args, $test )
 
 This tries to create a ping object and reports a fail or success. The args that
-should be sent are whatever args used with [Net::Ping](https://metacpan.org/pod/Net::Ping).
+should be sent are whatever args used with [Net::Ping](https://metacpan.org/pod/Net%3A%3APing).
 
 ## create\_ping\_object\_not\_ok( @args, $test )
 
@@ -62,9 +62,9 @@ Tried to create a ping object and attempts to fail. The exactly opposite of the
 
 # SUPPORTED VARIABLES
 
-Variables in [Test::Ping](https://metacpan.org/pod/Test::Ping) are tied scalars. Some variables change the values
+Variables in [Test::Ping](https://metacpan.org/pod/Test%3A%3APing) are tied scalars. Some variables change the values
 in the object hash while others run methods. This follows the behavior of
-[Net::Ping](https://metacpan.org/pod/Net::Ping). Below you will find each support variable and what it changes.
+[Net::Ping](https://metacpan.org/pod/Net%3A%3APing). Below you will find each support variable and what it changes.
 
 ## BIND
 
@@ -99,7 +99,7 @@ Changes the `econnrefused` hash value.
 ## \_has\_var\_ok( $var\_name, $var\_value, $description )
 
 Gets a variable name to test, what to test against and the name of the test.
-Runs an actual test using [Test::Builder](https://metacpan.org/pod/Test::Builder).
+Runs an actual test using [Test::Builder](https://metacpan.org/pod/Test%3A%3ABuilder).
 
 This is used to debug the actual module, if you wanna make sure it works.
 
@@ -124,7 +124,7 @@ When debugging behavior, fetching an internal object from a procedural module
 can be a bit difficult (especially when it has base inheritance with another
 one).
 
-This method allows you (or me) to fetch the actual [Net::Ping](https://metacpan.org/pod/Net::Ping) object from
+This method allows you (or me) to fetch the actual [Net::Ping](https://metacpan.org/pod/Net%3A%3APing) object from
 `Test::Ping`. It eases testing and assurance.
 
 This is used by the Tie functions to set the variables for the object for you.
@@ -149,15 +149,15 @@ And doing it with tests:
     create_ping_object_ok( 'tcp', 2, 'Creating our own Net::Ping object' );
     ping_ok( $target, "Yay! We can reach $target" );
 
-However, you should be warned. I test for a [Net::Ping](https://metacpan.org/pod/Net::Ping) object so trying to
+However, you should be warned. I test for a [Net::Ping](https://metacpan.org/pod/Net%3A%3APing) object so trying to
 pass other objects will fail. If anyone needs this changed or any reason,
 contact me and I'll consider it.
 
 # DEPENDENCIES
 
-This module uses [Net::Ping](https://metacpan.org/pod/Net::Ping), [Tie::Scalar](https://metacpan.org/pod/Tie::Scalar) and [Carp](https://metacpan.org/pod/Carp).
+This module uses [Net::Ping](https://metacpan.org/pod/Net%3A%3APing), [Tie::Scalar](https://metacpan.org/pod/Tie%3A%3AScalar) and [Carp](https://metacpan.org/pod/Carp).
 
-[Test::Timer](https://metacpan.org/pod/Test::Timer) is used in the test suite.
+[Test::Timer](https://metacpan.org/pod/Test%3A%3ATimer) is used in the test suite.
 
 # BUGS
 
@@ -178,7 +178,7 @@ Sawyer X
 
 # COPYRIGHT AND LICENSE
 
-This software is Copyright (c) 2019 by Sawyer X.
+This software is Copyright (c) 2020 by Sawyer X.
 
 This is free software, licensed under:
 

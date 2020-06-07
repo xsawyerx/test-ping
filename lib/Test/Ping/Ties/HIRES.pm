@@ -1,7 +1,8 @@
 package Test::Ping::Ties::HIRES;
+# ABSTRACT: HiRes Tie variable to Test::Ping
+
 use strict;
 use warnings;
-# ABSTRACT: HiRes Tie variable to Test::Ping
 
 use Net::Ping;
 use Tie::Scalar;

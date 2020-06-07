@@ -1,7 +1,8 @@
 package Test::Ping::Ties::SOURCE_VERIFY;
+# ABSTRACT: Source Verify Tie variable to Test::Ping
+
 use strict;
 use warnings;
-# ABSTRACT: Source Verify Tie variable to Test::Ping
 
 use Net::Ping;
 use Tie::Scalar;
