@@ -22,3 +22,5 @@ pm_to_blib
 *.debug
 *.iml
 .build/
+Test-Ping-*/
+Test-Ping-*.tar.gz

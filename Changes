@@ -2,6 +2,8 @@ Revision history for Test-Ping
 
 {{$NEXT}}
 
+0.210     2020-06-07 09:41:16+03:00 Asia/Jerusalem
+
         - A set of fixed by Steve Bertrand:
         - Added prereq Time::HiRes v2.41.
         - Changed RFC 1918 address 172.29.249.249 to doc address 203.0.113.90
